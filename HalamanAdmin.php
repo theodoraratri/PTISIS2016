@@ -72,26 +72,13 @@ and open the template in the editor.
             <div id="featured_slide">
                 <div id="featured_wrap">
                     <h3>SELAMAT DATANG DIHALAMAN ADMINISTRATOR...</h3>
+                    
+                     <!--akan terdapat menu menu yang hanya berada di halaman admin saja-->
+                   
                 </div>
             </div>
         </div>
-        <!-- ####################################################################################################### -->
-        <div class="wrapper col5">
-            <div id="footer">
-                <div id="newsletter">
-                    <h2>PENCARIAN GOOGLE</h2>
-                    <p>Untuk melakukan pencarian <a href="http://www.google.com/">click here &raquo;</a></p>
-                </div>
-                <br class="clear" />
-            </div>
-        </div>
-        <!-- ####################################################################################################### -->
-        <div class="wrapper col6">
-            <div id="copyright">
-                <p class="fl_left">Copyright &copy; 2016 - All Rights Reserved - <a href="#">Domain Name</a></p>
-                <br class="clear" />
-            </div>
-        </div>
+       
         <?php
         ?>
     </body>
