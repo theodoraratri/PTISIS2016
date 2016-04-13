@@ -10,7 +10,7 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
-        <form method="post" action="<?= base_url(); ?>index.php/Welcome/insertDataSiswa">
+        <form method="post" action="<?= base_url(); ?>index.php/DataSiswa/insertDataSiswa">
             <h1 align="center">Menambahkan Data Siswa</h1>
             <table border="0"cellpading="2"cellspasing="1">
                 <tr>
