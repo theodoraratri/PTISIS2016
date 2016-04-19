@@ -73,43 +73,37 @@ and open the template in the editor.
             <div id="featured_slide">
                 <div id="featured_wrap">
                     <div class="topbox">
-                        <h2>TAMBAH DATA GURU</h2>
-                         <form method="post" action="<?= base_url() ?>index.php/DataGuru/insertDataGuru">
+                        <h2>TAMBAH DATA MATA PELAJARAN</h2>
+                         <form method="post" action="<?= base_url() ?>index.php/DataMataPelajaran/insertDataMataPelajaran">
                             <table> 
                                 <tr>
-                                    <td><label>NIP&nbsp;&nbsp;</label></td>
-                                    <td><input name="nipe" type="text" class="textbox"></td>
+                                    <td><label>ID Mata Pelajaran&nbsp;&nbsp;</label></td>
+                                    <td><input name="id_mp" type="text" class="textbox"></td>
                                 </tr>
                                 <tr>
-                                    <td><label>Nama Guru&nbsp;&nbsp;</label></td>
-                                    <td><input name="nmguru" type="text" class="textbox"></td>
-                                </tr>
-                                <tr>
-                                    <td><label>Password Guru&nbsp;&nbsp;</label></td>
-                                    <td><input name="passguru" type="text" class="textbox"></td>
+                                    <td><label>Nama Mata Pelajaran&nbsp;&nbsp;</label></td>
+                                    <td><input name="nm_mp" type="text" class="textbox"></td>
                                 </tr>
                             </table>
                             <input type="submit" value="Simpan">
                         </form>
-                        <h1 align="center">Tabel Data Guru</h1>
+                        <h1 align="center">Tabel Data Mata Pelajaran</h1>
                         <table width="80%" border="1" cellpading="2">
                             <thead>
                                 <tr>
-                                    <td><b>NIP</b></td>
-                                    <td><b>Nama Guru</b></td>
-                                    <td><b>Password</b></td>
+                                    <td><b>ID Mata Pelajaran</b></td>
+                                    <td><b>Nama Mata Pelajaran</b></td>
                                 </tr>
                             </thead>
 
                             <?php
                            
-                            if (isset($iguru)) {
-                                foreach ($iguru as $guru) {
+                            if (isset($imapel)) {
+                                foreach ($imapel as $mapel) {
                                     ?>
                                     <tr>
-                                        <td><?php echo $guru->nip; ?></td>
-                                        <td><?php echo $guru->namaguru; ?></td>
-                                        <td><?php echo $guru->password; ?></td>
+                                        <td><?php echo $mapel->id_mapel; ?></td>
+                                        <td><?php echo $mapel->nama_mapel; ?></td>
                                     </tr>
                                     <?php
                                 }
