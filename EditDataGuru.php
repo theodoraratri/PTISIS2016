@@ -9,11 +9,11 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <title>Sistem Informasi Siswa</title>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-        <link rel="stylesheet" href="layout/styles/layout.css" type="text/css" />
-        <script type="text/javascript" src="layout/scripts/jquery.min.js"></script>
-        <script type="text/javascript" src="layout/scripts/jquery.slidepanel.setup.js"></script>
-        <script type="text/javascript" src="layout/scripts/jquery.ui.min.js"></script>
-        <script type="text/javascript" src="layout/scripts/jquery.tabs.setup.js"></script>
+        <link rel="stylesheet" href="<?php echo base_url(); ?>layout/styles/layout.css" type="text/css" />
+        <script type="text/javascript" src="<?php site_url('layout/scripts/jquery.min.js') ?>"></script>
+        <script type="text/javascript" src="<?php site_url('layout/scripts/jquery.slidepanel.setup.js') ?>"></script>
+        <script type="text/javascript" src="<?php site_url('layout/scripts/jquery.ui.min.js') ?>"></script>
+        <script type="text/javascript" src="<?php site_url('layout/scripts/jquery.tabs.setup.js') ?>"></script>
     </head>
     <body>
         <!-- ####################################################################################################### -->
@@ -73,21 +73,39 @@ and open the template in the editor.
             <div id="featured_slide">
                 <div id="featured_wrap">
                     <h3>EDIT DATA GURU</h3>
-                    <h1 align="center">Tabel Data Guru</h1>
-                    <table width="80%" border="1" cellpading="2">
-                        <thead>
-                            <tr>
-                                <td align="center"><b>NIP</b></td>
-                                <td align="center"><b>Nama Guru</b></td>
-                                <td align="center"><b>Password</b></td>
-                                <td align="center"><b>Edit</b></td>
-                                <!--menampilkan tabel yang berisi data guru,
-                                kemudian tabel paling kanan terdapat tombol 
-                                edit didalam tabel untuk memilih apabila 
-                                ingin mengedit data-->
-                            </tr>
-                        </thead>
-                    </table>
+                    <!--<form method="post" action="<?= base_url() ?>index.php/DataGuru/updateDataGuru">-->
+                    <form>
+                        <h1 align="center">Tabel Data Guru</h1>
+                        <table width="80%" border="1" cellpading="2">
+                            <thead>
+                                <tr>
+                                    <td align="center"><b>NIP</b></td>
+                                    <td align="center"><b>Nama Guru</b></td>
+                                    <td align="center"><b>Password</b></td>
+                                    <td align="center"><b>Edit</b></td>
+                                    <!--menampilkan tabel yang berisi data guru,
+                                    kemudian tabel paling kanan terdapat tombol 
+                                    edit didalam tabel untuk memilih apabila 
+                                    ingin mengedit data-->
+                                </tr>
+                            </thead>
+                            <?php
+                            if (isset($eguru)) {
+                                foreach ($eguru as $guru) {
+                                    ?>
+                                    <tr>
+                                        <td><?php echo $guru->nip; ?></td>
+                                        <td><?php echo $guru->namaguru; ?></td>
+                                        <td><?php echo $guru->password; ?></td>
+                                        <td><?php echo anchor('DataGuru/editform/' . $guru->nip, 'Edit'); ?></td>
+                                    </tr>
+                                    <?php
+                                }
+                            }
+                            ?> 
+
+                        </table>
+                    </form>
                 </div>
             </div>
         </div>
