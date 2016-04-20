@@ -72,31 +72,29 @@ and open the template in the editor.
         <div class="wrapper col3">
             <div id="featured_slide">
                 <div id="featured_wrap">
-                    <h3>HAPUS DATA GURU</h3>
-                    <form method="post" action="<?= base_url() ?>index.php/DataGuru/deleteDataGuru">
-                        <h1 align="center">Tabel Data Guru</h1>
+                    <h3>HAPUS DATA MATA PELAJARAN</h3>
+                    <form method="post" action="<?= base_url() ?>index.php/DataMataPelajaran/deleteDataMataPelajaran">
+                        <h1 align="center">Tabel Data Mata Pelajaraan</h1>
                         <table width="80%" border="1" cellpading="2">
                             <thead>
                                 <tr>
-                                    <td align="center"><b>NIP</b></td>
-                                    <td align="center"><b>Nama Guru</b></td>
-                                    <td align="center"><b>Password</b></td>
+                                    <td align="center"><b>ID Mata Pelajaran</b></td>
+                                    <td align="center"><b>Nama Mata Pelajaran</b></td>
                                     <td align="center"><b>Hapus</b></td>
-                                    <!--menampilkan tabel yang berisi data guru,
+                                    <!--menampilkan tabel yang berisi data mapel,
                                     kemudian tabel paling kanan terdapat tombol 
                                     hapus didalam tabel untuk memilih apabila 
                                     ingin mengedit data-->
                                 </tr>
                             </thead>
                             <?php
-                            if (isset($dguru)) {
-                                foreach ($dguru as $guru) {
+                            if (isset($dmapel)) {
+                                foreach ($dmapel as $mapel) {
                                     ?>
                                     <tr>
-                                        <td><?php echo $guru->nip; ?></td>
-                                        <td><?php echo $guru->namaguru; ?></td>
-                                        <td><?php echo $guru->password; ?></td>
-                                        <td><?php echo anchor('DataGuru/deleteDataGuru/' . $guru->nip, 'Hapus'); ?></td>
+                                        <td><?php echo $mapel->id_mapel; ?></td>
+                                        <td><?php echo $mapel->nama_mapel; ?></td>
+                                        <td><?php echo anchor('DataMataPelajaran/deleteDataMataPelajaran/' . $mapel->id_mapel, 'Hapus'); ?></td>
                                     </tr>
                                     <?php
                                 }

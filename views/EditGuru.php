@@ -72,39 +72,27 @@ and open the template in the editor.
         <div class="wrapper col3">
             <div id="featured_slide">
                 <div id="featured_wrap">
-                    <h3>HAPUS DATA GURU</h3>
-                    <form method="post" action="<?= base_url() ?>index.php/DataGuru/deleteDataGuru">
-                        <h1 align="center">Tabel Data Guru</h1>
-                        <table width="80%" border="1" cellpading="2">
-                            <thead>
-                                <tr>
-                                    <td align="center"><b>NIP</b></td>
-                                    <td align="center"><b>Nama Guru</b></td>
-                                    <td align="center"><b>Password</b></td>
-                                    <td align="center"><b>Hapus</b></td>
-                                    <!--menampilkan tabel yang berisi data guru,
-                                    kemudian tabel paling kanan terdapat tombol 
-                                    hapus didalam tabel untuk memilih apabila 
-                                    ingin mengedit data-->
-                                </tr>
-                            </thead>
-                            <?php
-                            if (isset($dguru)) {
-                                foreach ($dguru as $guru) {
-                                    ?>
-                                    <tr>
-                                        <td><?php echo $guru->nip; ?></td>
-                                        <td><?php echo $guru->namaguru; ?></td>
-                                        <td><?php echo $guru->password; ?></td>
-                                        <td><?php echo anchor('DataGuru/deleteDataGuru/' . $guru->nip, 'Hapus'); ?></td>
-                                    </tr>
-                                    <?php
-                                }
-                            }
-                            ?> 
+                    <h3>EDIT DATA GURU</h3>
 
-                        </table>
-                    </form>
+                    <h1 align="center">Form Edit Data Guru</h1>
+                    
+                        <form method="post" action="<?= base_url() ?>index.php/DataGuru/updateDataGuru">
+                            <table> 
+                                <tr>
+                                    <td><label>NIP&nbsp;&nbsp;</label></td>
+                                    <td><input value="<?php echo $nip; ?>" name="nipe" type="text" class="textbox" readonly></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Nama Guru&nbsp;&nbsp;</label></td>
+                                    <td><input value="<?php echo $namaguru; ?>" name="nmguru" type="text" class="textbox"></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Password Guru&nbsp;&nbsp;</label></td>
+                                    <td><input value="<?php echo $password; ?>" name="passguru" type="text" class="textbox"></td>
+                                </tr>
+                            </table>
+                            <input type="submit" value="Simpan">
+                        </form>
                 </div>
             </div>
         </div>
@@ -129,5 +117,3 @@ and open the template in the editor.
         ?>
     </body>
 </html>
-
-

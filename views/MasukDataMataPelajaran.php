@@ -9,7 +9,7 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <title>Sistem Informasi Siswa</title>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-        <link rel="stylesheet" href="<?php echo base_url(); ?>layout/styles/layout.css" type="text/css" />
+         <link rel="stylesheet" href="<?php echo base_url(); ?>layout/styles/layout.css" type="text/css" />
         <script type="text/javascript" src="<?php site_url('layout/scripts/jquery.min.js') ?>"></script>
         <script type="text/javascript" src="<?php site_url('layout/scripts/jquery.slidepanel.setup.js') ?>"></script>
         <script type="text/javascript" src="<?php site_url('layout/scripts/jquery.ui.min.js') ?>"></script>
@@ -72,39 +72,45 @@ and open the template in the editor.
         <div class="wrapper col3">
             <div id="featured_slide">
                 <div id="featured_wrap">
-                    <h3>HAPUS DATA GURU</h3>
-                    <form method="post" action="<?= base_url() ?>index.php/DataGuru/deleteDataGuru">
-                        <h1 align="center">Tabel Data Guru</h1>
+                    <div class="topbox">
+                        <h2>TAMBAH DATA MATA PELAJARAN</h2>
+                         <form method="post" action="<?= base_url() ?>index.php/DataMataPelajaran/insertDataMataPelajaran">
+                            <table> 
+                                <tr>
+                                    <td><label>ID Mata Pelajaran&nbsp;&nbsp;</label></td>
+                                    <td><input name="id_mp" type="text" class="textbox"></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Nama Mata Pelajaran&nbsp;&nbsp;</label></td>
+                                    <td><input name="nm_mp" type="text" class="textbox"></td>
+                                </tr>
+                            </table>
+                            <input type="submit" value="Simpan">
+                        </form>
+                        <h1 align="center">Tabel Data Mata Pelajaran</h1>
                         <table width="80%" border="1" cellpading="2">
                             <thead>
                                 <tr>
-                                    <td align="center"><b>NIP</b></td>
-                                    <td align="center"><b>Nama Guru</b></td>
-                                    <td align="center"><b>Password</b></td>
-                                    <td align="center"><b>Hapus</b></td>
-                                    <!--menampilkan tabel yang berisi data guru,
-                                    kemudian tabel paling kanan terdapat tombol 
-                                    hapus didalam tabel untuk memilih apabila 
-                                    ingin mengedit data-->
+                                    <td><b>ID Mata Pelajaran</b></td>
+                                    <td><b>Nama Mata Pelajaran</b></td>
                                 </tr>
                             </thead>
+
                             <?php
-                            if (isset($dguru)) {
-                                foreach ($dguru as $guru) {
+                           
+                            if (isset($imapel)) {
+                                foreach ($imapel as $mapel) {
                                     ?>
                                     <tr>
-                                        <td><?php echo $guru->nip; ?></td>
-                                        <td><?php echo $guru->namaguru; ?></td>
-                                        <td><?php echo $guru->password; ?></td>
-                                        <td><?php echo anchor('DataGuru/deleteDataGuru/' . $guru->nip, 'Hapus'); ?></td>
+                                        <td><?php echo $mapel->id_mapel; ?></td>
+                                        <td><?php echo $mapel->nama_mapel; ?></td>
                                     </tr>
                                     <?php
                                 }
                             }
                             ?> 
-
                         </table>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -129,5 +135,7 @@ and open the template in the editor.
         ?>
     </body>
 </html>
+
+
 
 
