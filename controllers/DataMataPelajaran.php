@@ -21,31 +21,27 @@ class DataMataPelajaran extends CI_Controller {
     }
 
     public function index() {
-//menampilkan view mapel dan juga passing data dengan nama $data(Bentuknya array) yang berisi 'listmapel'
-        $query = $this->db->get("mapel");
-        $data['records'] = $query->result();
-        $this->load->helper('url');
-        $this->load->view('MasukDataMataPelajaran', $data);
+        $this->load->view('KelolaDataMataPelajaran');
     }
 
-    function getmapel_hapus() {
-        $this->load->model('MataPelajaran');
-        $query = $this->MataPelajaran->getAllMataPelajaran();
-        $data['dmapel'] = $query->result();
-        $this->load->view('HapusDataMataPelajaran', $data);
-    }
-
-    function getmapel_masuk() {
+    function tampilmasuk_mapel() {
         $this->load->model('MataPelajaran');
         $query = $this->MataPelajaran->getAllMataPelajaran();
         $data['imapel'] = $query->result();
         $this->load->view('MasukDataMataPelajaran', $data);
     }
 
-    function getmapel_edit() {
+    function tampilhapus_mapel() {
         $this->load->model('MataPelajaran');
         $query = $this->MataPelajaran->getAllMataPelajaran();
-        $data['emapel'] = $query->result();
+        $data['dmapel'] = $query->result();
+        $this->load->view('HapusDataMataPelajaran', $data);
+    }
+
+    function tampiledit_mapel() {
+        $this->load->model('MataPelajaran');
+        $query = $this->MataPelajaran->getAllMataPelajaran();
+        $data['umapel'] = $query->result();
         $this->load->view('EditDataMataPelajaran', $data);
     }
 
@@ -56,7 +52,7 @@ class DataMataPelajaran extends CI_Controller {
         );
         $this->MataPelajaran->insertdatamatapelajaran($data);
         $this->load->helper('url');
-        redirect('DataMataPelajaran/getmapel_masuk'); //redirect page ke halaman utama controller mapel
+        redirect('DataMataPelajaran/tampilmasuk_mapel'); //redirect page ke halaman utama controller mapel
         //Function yang dipanggil ketika ingin memasukan mapel ke dalam database
     }
 
@@ -66,7 +62,7 @@ class DataMataPelajaran extends CI_Controller {
             'nama_mapel' => $this->input->post('nm_mp'),
         );
         $this->MataPelajaran->updatedatamatapelajaran($id_mp); //passing variable $id ke mapel model
-        redirect('DataMataPelajaran/getmapel_edit');
+        redirect('DataMataPelajaran/tampiledit_mapel');
         //Function yang dipanggil ketika ingin melakukan update terhadap produk yang ada di dalam database
     }
 
@@ -74,11 +70,11 @@ class DataMataPelajaran extends CI_Controller {
         $where = array('id_mapel' => $id_mp);
         $this->MataPelajaran->deletedatamatapelajaran($where, $id_mp); //passing variable $id ke mapel model
         $this->load->helper('url');
-        redirect('DataMataPelajaran/getmapel_hapus');
+        redirect('DataMataPelajaran/tampilhapus_mapel');
         //Function yang dipanggil ketika ingin melakukan delete produk dari database
     }
 
-    public function editform($id_mapel) {
+    public function tampilFormEdit($id_mapel) {
 
         $query = $this->MataPelajaran->getMataPelajaran($id_mapel);
         foreach ($query->result() as $mapel) {
