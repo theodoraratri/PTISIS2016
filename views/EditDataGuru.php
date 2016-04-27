@@ -20,13 +20,11 @@ and open the template in the editor.
         <div class="wrapper col1">
             <div id="header">
                 <div id="logo">
-                    <h1><a href="HalamanAdmin.php">Sistem Informasi Siswa</a></h1>
+                    <h1><?php echo anchor('Kelola/indexAdmin/', 'Sistem Informasi Siswa'); ?></h1>
                     <p>SMA Pangudi Luhur Yogyakarta</p>
                 </div>
                 <div class="fl_right">
-
-                    <p>Tel: xxxxx xxxxxxxxxx | Mail: info@domain.com</p>
-                </div>
+                    <p>Tel: xxxxx xxxxxxxxxx | Mail: info@domain.com |<?php echo anchor('Kelola/index/', 'LOGOUT'); ?>| </p> </div>
                 <br class="clear" />
             </div>
         </div>
@@ -34,35 +32,43 @@ and open the template in the editor.
         <div class="wrapper col2">
             <div id="topnav">
                 <ul>
-                    <li><a href="HalamanAdmin.php">Halaman Admin</a>
+                    <li><?php echo anchor('Kelola/indexAdmin/', 'Halaman Admin'); ?>
                         <ul>
                         </ul>
                     </li>
-                    <li><a href="KelolaDataSiswa.php">Kelola Data Siswa</a>
+                    <li class="active"><?php echo anchor('DataGuru/index/', 'Kelola Data Guru'); ?>
                         <ul>
-                            <li><a href="MasukDataSiswa.php">Masukkan Data Siswa</a></li>
-                            <li><a href="HapusDataSiswa.php">Menghapus Data Siswa</a></li>
-                            <li class="last"><a href="EditDataSiswa.php">Mengedit Data Siswa</a></li>
+                            <li><?php echo anchor('DataGuru/tampilmasuk_guru/', 'Masukkan Data Guru'); ?></li>
+                            <li><?php echo anchor('DataGuru/tampilhapus_guru/', 'Menghapus Data Guru'); ?></li>
+                            <li class="last"><?php echo anchor('DataGuru/tampiledit_guru/', 'Mengedit Data Guru'); ?></li>
                         </ul>
                     </li>
-                    <li class="active"><a href="KelolaDataGuru.php">Kelola Data Guru</a>
+                    <li><?php echo anchor('DataKelas/index/', 'Kelola Data Kelas'); ?>
                         <ul>
-                            <li><a href="MasukDataGuru.php">Masukkan Data Guru</a></li>
-                            <li><a href="HapusDataGuru.php">Menghapus Data Guru</a></li>
-                            <li class="last"><a href="EditDataGuru.php">Mengedit Data Guru</a></li>
+                            <li><?php echo anchor('DataKelas/tampilmasuk_kelas/', 'Masukkan Data Guru'); ?></li>
+                            <li><?php echo anchor('DataKelas/tampilhapus_kelas/', 'Menghapus Data Guru'); ?></li>
+                            <li class="last"><?php echo anchor('DataKelas/tampiledit_kelas/', 'Mengedit Data Guru'); ?></li>
                         </ul>
                     </li>
-                    <li><a href="KelolaDataKelas.php">Kelola Data Kelas</a>
+                    <li><?php echo anchor('DataSiswa/index/', 'Kelola Data Siswa'); ?>
                         <ul>
-                            <li><a href="MasukDataKelas.php">Masukkan Data Kelas</a></li>
-                            <li><a href="HapusDataKelas.php">Menghapus Data Kelas</a></li>
-                            <li class="last"><a href="EditDataKelas.php">Mengedit Data Kelas</a></li>
+                            <li><?php echo anchor('DataSiswa/tampilmasuk_siswa/', 'Masukkan Data Siswa'); ?></li>
+                            <li><?php echo anchor('DataSiswa/tampilhapus_siswa/', 'Menghapus Data Siswa'); ?></li>
+                            <li class="last"><?php echo anchor('DataSiswa/tampiledit_siswa/', 'Mengedit Data Siswa') ?></li>
                         </ul>
                     </li>
-                    <li><a href="KelolaDataJadwalPelajaran.php">Kelola Data Jadwal Pelajaran</a><ul>
-                            <li><a href="MasukDataJadwalPelajaran.php">Masukkan Data Jadwal Pelajaran</a></li>
-                            <li><a href="HapusDataJadwalPelajaran.php">Menghapus Data Jadwal Pelajaran</a></li>
-                            <li class="last"><a href="EditDataJadwalPelajaran.php">Mengedit Data Jadwal Pelajaran</a></li>
+                    <li><?php echo anchor('DataMataPelajaran/index/', 'Kelola Data Mata Pelajaran'); ?>
+                        <ul>
+                            <li><?php echo anchor('DataMataPelajaran/tampilmasuk_mapel/', 'Masukkan Data Mata Pelajaran'); ?></li>
+                            <li><?php echo anchor('DataMataPelajaran/tampilhapus_mapel/', 'Menghapus Data Mata Pelajaran'); ?></li>
+                            <li class="last"><?php echo anchor('DataMataPelajaran/tampiledit_mapel/', 'Mengedit Data Mata Pelajaran') ?></li>
+                        </ul>
+                    </li>
+                    <li><?php echo anchor('DataJadwalPelajaran/index/', 'Kelola Data Jadwal Pelajaran'); ?>
+                        <ul>
+                            <li><?php echo anchor('DataJadwalPelajaran/tampilmasuk_jadwalpelajaran/', 'Masukkan Data Jadwal Pelajaran'); ?></li>
+                            <li><?php echo anchor('DataJadwalPelajaran/tampilhapus_jadwalpelajaran/', 'Menghapus Data Jadwal Pelajaran'); ?></li>
+                            <li class="last"><?php echo anchor('DataJadwalPelajaran/tampiledit_jadwalpelajaran/', 'Mengedit Data Jadwal Pelajaran') ?></li>
                         </ul>
                     </li>
                 </ul>
@@ -70,44 +76,34 @@ and open the template in the editor.
         </div>
         <!-- ####################################################################################################### -->
         <div class="wrapper col3">
-            <div id="featured_slide">
-                <div id="featured_wrap">
-                    <h3>EDIT DATA GURU</h3>
-                    <!--<form method="post" action="<?= base_url() ?>index.php/DataGuru/updateDataGuru">-->
-                    <form>
-                        <h1 align="center">Tabel Data Guru</h1>
-                        <table width="80%" border="1" cellpading="2">
-                            <thead>
-                                <tr>
-                                    <td align="center"><b>NIP</b></td>
-                                    <td align="center"><b>Nama Guru</b></td>
-                                    <td align="center"><b>Password</b></td>
-                                    <td align="center"><b>Edit</b></td>
-                                    <!--menampilkan tabel yang berisi data guru,
-                                    kemudian tabel paling kanan terdapat tombol 
-                                    edit didalam tabel untuk memilih apabila 
-                                    ingin mengedit data-->
-                                </tr>
-                            </thead>
+            <h3>EDIT DATA GURU</h3>
+            <form>
+                <h1 align="center">Tabel Data Guru</h1>
+                <table width="80%" border="1" cellpading="2">
+                    <thead>
+                        <tr>
+                            <td align="center"><b>NIP</b></td>
+                            <td align="center"><b>Nama Guru</b></td>
+                            <td align="center"><b>Password</b></td>
+                            <td align="center"><b>Edit</b></td>
+                        </tr>
+                    </thead>
+                    <?php
+                    if (isset($uguru)) {
+                        foreach ($uguru as $guru) {
+                            ?>
+                            <tr>
+                                <td><?php echo $guru->nip; ?></td>
+                                <td><?php echo $guru->namaguru; ?></td>
+                                <td><?php echo $guru->password; ?></td>
+                                <td><?php echo anchor('DataGuru/tampilFormEdit/' . $guru->nip, 'Edit'); ?></td>
+                            </tr>
                             <?php
-                            if (isset($eguru)) {
-                                foreach ($eguru as $guru) {
-                                    ?>
-                                    <tr>
-                                        <td><?php echo $guru->nip; ?></td>
-                                        <td><?php echo $guru->namaguru; ?></td>
-                                        <td><?php echo $guru->password; ?></td>
-                                        <td><?php echo anchor('DataGuru/editform/' . $guru->nip, 'Edit'); ?></td>
-                                    </tr>
-                                    <?php
-                                }
-                            }
-                            ?> 
-
-                        </table>
-                    </form>
-                </div>
-            </div>
+                        }
+                    }
+                    ?> 
+                </table>
+            </form>
         </div>
         <!-- ####################################################################################################### -->
         <div class="wrapper col5">
