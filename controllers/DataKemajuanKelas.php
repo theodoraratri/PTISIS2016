@@ -29,15 +29,15 @@ class DataKemajuanKelas extends CI_Controller {
 
     public function insertData() {
         $data = array(
-        'id_kemajuan' => $this->input->post('id_kemajuan'),
-        'id_kelas' => $this->input->post('id_kelas'),
-        'id_mapel' => $this->input->post('id_mapel'),
-        'nip' => $this->input->post('nip'),
-        'id_jadwal' => $this->input->post('id_jadwal'),
-        'tgl' => $this->input->post('tgl'),
-        'jumlah_kehadiran' => $this->input->post('jumlah_kehadiran'),
-        'materiYD' => $this->input->post('materiYD'),
-        'kegiatanBM' => $this->input->post('kegiatanBM')
+            'id_kemajuan' => $this->input->post('id_kemajuan'),
+            'id_kelas' => $this->input->post('id_kelas'),
+            'id_mapel' => $this->input->post('id_mapel'),
+            'nip' => $this->input->post('nip'),
+            'id_jadwal' => $this->input->post('id_jadwal'),
+            'tgl' => $this->input->post('tgl'),
+            'jumlah_kehadiran' => $this->input->post('jumlah_kehadiran'),
+            'materiYD' => $this->input->post('materiYD'),
+            'kegiatanBM' => $this->input->post('kegiatanBM')
         );
         $this->KemajuanKelas->masukKemajuanKelas($data);
         $this->load->helper('url');
@@ -45,7 +45,7 @@ class DataKemajuanKelas extends CI_Controller {
     }
 
     public function tampilMapelK() {
-        $this->load->view('MasukKemajuanKelas');
+        $this->load->view('DataKemajuan');
 //        $this->load->view('CobaKemajuan');
     }
 
@@ -54,17 +54,31 @@ class DataKemajuanKelas extends CI_Controller {
 //         $this->load->view('CobaKemajuan');
     }
 
-    public function tampilInsertK() {
+    public function tampilJadwal() {
+        $this->load->view('DataKemajuan');
+    }
+
+    public function tampilNIP() {
+        $this->load->view('DataKemajuan');
+    }
+
+    public function tampilInsert() {
+        $this->load->model('KemajuanKelas');
+        $data['dkelas'] = $this->KemajuanKelas->getKelasK();
+        $this->load->view('MasukKemajuanKelas', $data);
+    }
+
+    public function tampilInsertJumlah() {
+
+
         $this->load->model('KemajuanKelas');
         $data['dkelas'] = $this->KemajuanKelas->getKelasK();
         $data['dmapel'] = $this->KemajuanKelas->getMapelK();
         $data['dnip'] = $this->KemajuanKelas->getNIP();
         $data['djadwal'] = $this->KemajuanKelas->getIdJadwal();
+        $data['jhadir'] = $this->KemajuanKelas->tampilJumlahHadir();
 
-
-//        $data['hadir'] = $this->KemajuanKelas->tampilJumlahHadir();
-        $this->load->view('MasukKemajuanKelas', $data);
-//        $this->load->view('CobaKemajuan', $data);
+        $this->load->view('DataKemajuan', $data);
     }
 
 }
