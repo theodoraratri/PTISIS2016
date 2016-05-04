@@ -17,7 +17,7 @@ and open the template in the editor.
     </head>
     <body>
         <!-- ####################################################################################################### -->
-        <div class="wrapper col1">
+       <div class="wrapper col1">
             <div id="header">
                 <div id="logo">
                     <h1><?php echo anchor('FilterLoginAdmin/indexAdmin/', 'Sistem Informasi Siswa'); ?></h1>
@@ -79,59 +79,30 @@ and open the template in the editor.
         </div>
         <!-- ####################################################################################################### -->
         <div class="wrapper col3">
-            <h3>HAPUS DATA JADWAL PELAJARAN</h3>
-            <h1 align="center">Tabel Data Jadwal Pelajaran</h1>
-            <table width="80%" border="1" cellpading="2">
-                <thead>
-                    <tr>
-                        <td><b>Kode Jadwal</b></td>
-                        <td><b>NIP</b></td>
-                        <td><b>ID Mapel</b></td>
-                        <td><b>ID Kelas</b></td>
-                        <td><b>Hari</b></td>
-                        <td><b>Jam</b></td>
-                        <td><b>Tahun Ajaran</b></td>
-                    </tr>
-                </thead>
-                <?php
-                if (isset($djadwal)) {
-                    foreach ($djadwal as $row) {
-                        ?>
-                        <tr>
-                            <td><?php echo $row->kode_jadwal; ?></td>
-                            <td><?php echo $row->id_mapel; ?></td>
-                            <td><?php echo $row->nip; ?></td>
-                            <td><?php echo $row->id_kelas; ?></td>
-                            <td><?php echo $row->hari; ?></td>
-                            <td><?php echo $row->jam; ?></td>
-                            <td><?php echo $row->tahun_ajaran; ?></td>
-                            <td><?php echo anchor('DataJadwalPelajaran/deleteDataJadwalPelajaran/' . $row->kode_jadwal, 'Hapus'); ?></td>
-                        </tr>
-                        <?php
-                    }
-                }
-                ?> 
-            </table>
-        </form>
-    </div>
-    <!-- ####################################################################################################### -->
-    <div class="wrapper col5">
-        <div id="footer">
-            <div id="newsletter">
-                <h2>PENCARIAN GOOGLE</h2>
-                <p>Untuk melakukan pencarian <a href="http://www.google.com/">click here &raquo;</a></p>
+            <div id="featured_slide">
+                <div id="featured_wrap">
+                    <h3>KELOLA DATA JADWAL PELAJARAN</h3>
+                </div>
             </div>
-            <br class="clear" />
         </div>
-    </div>
-    <!-- ####################################################################################################### -->
-    <div class="wrapper col6">
-        <div id="copyright">
-            <p class="fl_left">Copyright &copy; 2016 - All Rights Reserved - <a href="#">Domain Name</a></p>
-            <br class="clear" />
+        <!-- ####################################################################################################### -->
+        <div class="wrapper col5">
+            <div id="footer">
+                <div id="newsletter">
+                    <h2>PENCARIAN GOOGLE</h2>
+                    <p>Untuk melakukan pencarian <a href="http://www.google.com/">click here &raquo;</a></p>
+                </div>
+                <br class="clear" />
+            </div>
         </div>
-    </div>
-    <?php
-    ?>
-</body>
+        <!-- ####################################################################################################### -->
+        <div class="wrapper col6">
+            <div id="copyright">
+                <p class="fl_left">Copyright &copy; 2016 - All Rights Reserved - <a href="#">Domain Name</a></p>
+                <br class="clear" />
+            </div>
+        </div>
+        <?php
+        ?>
+    </body>
 </html>
