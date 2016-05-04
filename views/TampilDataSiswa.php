@@ -47,9 +47,9 @@ and open the template in the editor.
         </div>
         <!-- ####################################################################################################### -->
         <h1 align="center">Tabel Data Siswa</h1>
-        <form method="post" action="<?= base_url() ?>index.php/DataAbsensi/masukAbsensi">                               
+        <form method="post" action="<?= base_url() ?>index.php/DataAbsensi/InsertAbsen">                               
             <table>
-                <tr> 
+<!--                <tr> 
                     <td>Kelas : </td>
                     <td><select name="id_kelas">
                             <?php
@@ -75,10 +75,11 @@ and open the template in the editor.
                             }
                             ?> 
                         </select></td>
-                </tr>
+                </tr>-->
                 <tr>
                     <td>Tanggal : </td>
-                    <td><input type='date' name='tgl' type='text'value=''></td>
+                    <td><select name='tgl' 
+                                <option value=""></select></td>
                 </tr>
             </table>
             <table width="80%" border="1" cellpading="2">
@@ -98,14 +99,14 @@ and open the template in the editor.
                         foreach ($ukelas as $data) {
                             ?>
                         <tr>
-                            <td><input name="no_induk" value="<?php echo $data->no_induk; ?>"</td>
+                            <td><input name="no_induk[]" value="<?php echo $data->no_induk; ?>"></td>
                             <td><?php echo $data->nama_siswa; ?></td>
                             <?php
                             ?>
-                            <td> <input type="checkbox" name="hadir[]" value='1'></td>
-                            <td> <input type="checkbox" name="alfa[]" value='1'></td>
-                            <td> <input type="checkbox" name="izin[]" value='1'></td>
-                            <td> <input type="checkbox" name="sakit[]" value='1'></td>
+                            <td> <input type="checkbox" name="status[]" value='hadir'></td>
+                            <td> <input type="checkbox" name="status[]" value='alfa'></td>
+                            <td> <input type="checkbox" name="status[]" value='izin'></td>
+                            <td> <input type="checkbox" name="status[]" value='sakit'></td>
                             <?php
                         }
                     }
