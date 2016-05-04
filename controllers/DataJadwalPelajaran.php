@@ -10,10 +10,11 @@ class DataJadwalPelajaran extends CI_Controller {
     }
 
     public function index() {
-        $this->load->view('MasukDataJadwalPelajaran');
+        $this->load->view('KelolaDataJadwalPelajaran');
     }
 
-    public function InsertJadwalPelajaran() {
+    public function insertDataJadwalPelajaran() {
+        	
         $data = array(
             'kode_jadwal' => $this->input->post('kode'),
             'id_mapel' => $this->input->post('mapel'),
@@ -22,20 +23,20 @@ class DataJadwalPelajaran extends CI_Controller {
             'hari' => $this->input->post('hr'),
             'jam' => $this->input->post('jam'),
             'tahun_ajaran' => $this->input->post('tahun'));
-        $this->JadwalPelajaran->Insert($data);
+        $this->JadwalPelajaran->insertdatajadwalpelajaran($data);
         $this->load->helper('url');
-        redirect('DataJadwalPelajaran/tampilInsert');
+        redirect('DataJadwalPelajaran/tampilmasuk_jadwalpelajaran');
     }
 
-    public function deleteJadwal($kode) {
+    public function deleteDataJadwalPelajaran($kode) {
 
         $where = array('kode_jadwal' => $kode);
-        $this->JadwalPelajaran->delete($where, $kode);
+        $this->JadwalPelajaran->deletedatajadwalpelajaran($where, $kode);
         $this->load->helper('url');
-        redirect('DataJadwalPelajaran/tampilDelete');
+        redirect('DataJadwalPelajaran/tampilhapus_jadwalpelajaran');
     }
 
-    public function EditJadwal() {
+    public function updateDataJadwalPelajaran() {
 //Function yang dipanggil ketika ingin melakukan update terhadap produk yang ada di dalam database
         $data = array(
             'kode_jadwal' => $this->input->post('kode'),
@@ -45,29 +46,31 @@ class DataJadwalPelajaran extends CI_Controller {
             'hari' => $this->input->post('hr'),
             'jam' => $this->input->post('jam'),
             'tahun_ajaran' => $this->input->post('tahun'));
-        $this->JadwalPelajaran->edit($data);
-        redirect('DataJadwalPelajaran/getEdit'); //passing variable $data ke products_model
+        $this->JadwalPelajaran->updatedatajadwalpelajaran($data);
+        redirect('DataJadwalPelajaran/tampiledit_jadwalpelajaran'); //passing variable $data ke products_model
     }
 
-    public function tampilInsert() {
+    public function tampilmasuk_jadwalpelajaran() {
         $this->load->model('JadwalPelajaran');
-        $data['dkelas'] = $this->JadwalPelajaran->tampildKelas();
-        $data['dmapel'] = $this->JadwalPelajaran->tampilIdMapel();
-        $data['dnip'] = $this->JadwalPelajaran->tampilNIP();
-
-        $data['jadwal'] = $this->JadwalPelajaran->getAllJadwal();
+        $data['ikelas_jp'] = $this->JadwalPelajaran->tampildKelas();
+        $data['imapel_jp'] = $this->JadwalPelajaran->tampilIdMapel();
+        $data['inip_jp'] = $this->JadwalPelajaran->tampilNIP();
+        $query = $this->JadwalPelajaran->getAllJadwal();
+        $data['ijadwal'] = $query->result();
         $this->load->view('MasukDataJadwalPelajaran', $data);
     }
 
-    function tampilDelete() {
+    function tampilhapus_jadwalpelajaran() {
         $this->load->model('JadwalPelajaran');
-        $data['ja'] = $this->JadwalPelajaran->getAllJadwal();
+        $query = $this->JadwalPelajaran->getAllJadwal();
+        $data['djadwal'] = $query->result();
         $this->load->view('HapusDataJadwalPelajaran', $data);
     }
 
-    function getEdit() {
+    function tampiledit_jadwalpelajaran() {
         $this->load->model('JadwalPelajaran');
-        $data['jad'] = $this->JadwalPelajaran->getAllJadwal();
+        $query = $this->JadwalPelajaran->getAllJadwal();
+        $data['ujadwal'] = $query->result();
         $this->load->view('EditDataJadwalPelajaran', $data);
     }
 
@@ -75,16 +78,14 @@ class DataJadwalPelajaran extends CI_Controller {
         $query = $this->JadwalPelajaran->getJadwal($kode);
         foreach ($query->result() as $jadwal) {
             $data['kode_jadwal'] = $jadwal->kode_jadwal;
-
             $data['hari'] = $jadwal->hari;
             $data['jam'] = $jadwal->jam;
             $data['tahun_ajaran'] = $jadwal->tahun_ajaran;
         }
-        $data['tkelas'] = $this->JadwalPelajaran->tampildKelas();
-        $data['tmapel'] = $this->JadwalPelajaran->tampilIdMapel();
-        $data['tnip'] = $this->JadwalPelajaran->tampilNIP();
+        $data['tkelas_jp'] = $this->JadwalPelajaran->tampildKelas();
+        $data['tmapel_jp'] = $this->JadwalPelajaran->tampilIdMapel();
+        $data['tnip_jp'] = $this->JadwalPelajaran->tampilNIP();
         $this->load->view('EditJadwalPelajaran', $data);
     }
-
 
 }
