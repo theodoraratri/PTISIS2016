@@ -22,12 +22,11 @@ class KemajuanKelas extends CI_Model{
         return $this->db->query($sql);
     }
 
-    public function tampilJumlahHadir($tgl,$idkls) {//menampilkan jumlah kehadiran pada mata pelajaran dihari tersebut
-        
-        $sql = "select id_kelas, count(hadir) from data_absen where tgl ='".$tgl." or id_kelas='".$idkls."'";
-        return $this->db->query($sql);
+    public function tampilJumlahHadir($tgl,$id_kelas) {//menampilkan jumlah kehadiran pada mata pelajaran dihari tersebut
+        $query = "select count(status) from data_absensi where tgl='".$tgl."' and id_kelas='".$id_kelas."'and status='hadir'"
+                . "group by status";
+        return $this->db->query($query);
     }
-
     public function masukKemajuanKelas($data) {
         $this->db->insert('data-kemajuan', $data);
     }
