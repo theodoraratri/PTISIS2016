@@ -21,7 +21,7 @@ class Siswa extends CI_Model {
         $this->db->insert('SISWA', $data);
     }
 
-    function updatedatasiswa($data) {//function untuk mengedit data siswa
+    public function updatedatasiswa($data) {//function untuk mengedit data siswa
         $this->db->where('nomorinduk', $data['nomorinduk']);
         $this->db->update('SISWA', $data);
     }
@@ -30,9 +30,9 @@ class Siswa extends CI_Model {
          $this->db->delete('SISWA', $nomorinduk);
     }
 
-    public function tampilSiswa() {
-        $sql = "select * from SISWA ORDER BY NOMORINDUK DESC ";
-        return $sql->result();
+   public function tampildKelas() {
+        $query = $this->db->query("select id_kelas from kelas");
+        return $query;
     }
 
     function getAllSiswa() {
