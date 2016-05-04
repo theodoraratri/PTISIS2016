@@ -11,53 +11,37 @@
  *
  * @author Theodora Ratri
  */
-class DataSiswa extends CI_Controller{
+class DataSiswa extends CI_Controller {
+
     //put your code here
     function __construct() {
         parent::__construct();
         $this->load->model("Siswa"); //constructor yang dipanggil ketika memanggil siswa.php untuk melakukan pemanggilan pada model : siswa_model.php yang ada di folder models
     }
-    public function tampilKelola() {
+
+    public function index() {
         $this->load->view('KelolaDataSiswa');
     }
 
-    public function tampilMasuk() {
-        $this->load->view('MasukDataSiswa');
-    }
-
-    public function tampilHapus() {
-        $this->load->view('HapusDataSiswa');
-    }
-
-    public function tampilEdit() {
-        $this->load->view('EditDataSiswa');
-    }
-
-    public function index() {
-        $query = $this->db->get("SISWA");
-        $data['records'] = $query->result();
-        $this->load->helper('url');
-        $this->load->view('HapusDataSiswa', $data);
-    }
-
-    function getsiswa_hapus() {
+    function tampilhapus_siswa() {
         $this->load->model('Siswa');
         $query = $this->Siswa->getAllSiswa();
         $data['dsiswa'] = $query->result();
         $this->load->view('HapusDataSiswa', $data);
     }
 
-    function getsiswa_masuk() {
+    function tampilmasuk_siswa() {
         $this->load->model('Siswa');
+        $data['ikelas_s'] = $this->Siswa->tampildKelas();
         $query = $this->Siswa->getAllSiswa();
         $data['isiswa'] = $query->result();
         $this->load->view('MasukDataSiswa', $data);
     }
 
-    function getsiswa_edit() {
+    function tampiledit_siswa() {
         $this->load->model('Siswa');
         $query = $this->Siswa->getAllSiswa();
-        $data['esiswa'] = $query->result();
+        $data['usiswa'] = $query->result();
         $this->load->view('EditDataSiswa', $data);
     }
 
@@ -66,12 +50,11 @@ class DataSiswa extends CI_Controller{
             'nomorinduk' => $this->input->post('no'),
             'namasiswa' => $this->input->post('nama'),
             'angkatan' => $this->input->post('angk'),
-            'idkelas' => $this->input->post('idkel')
+            'id_kelas' => $this->input->post('idkel')
         );
         $this->Siswa->insertdatasiswa($data);
-        //$this->load->helper('url');
-        //$this->load->view('MasukDataSiswa', $data);
-        redirect('DataSiswa/getsiswa_masuk'); //redirect page ke halaman utama controller siswa
+        $this->load->helper('url');
+        redirect('DataSiswa/tampilmasuk_siswa'); //redirect page ke halaman utama controller siswa
         //Function yang dipanggil ketika ingin memasukan siswa ke dalam database
     }
 
@@ -80,10 +63,10 @@ class DataSiswa extends CI_Controller{
             'nomorinduk' => $this->input->post('no'),
             'namasiswa' => $this->input->post('nama'),
             'angkatan' => $this->input->post('angk'),
-            'idkelas' => $this->input->post('idkel')
+            'id_kelas' => $this->input->post('idkel')
         );
         $this->Siswa->updatedatasiswa($nin); //passing variable $id ke siswa
-        redirect('DataSiswa/getsiswa_edit');
+        redirect('DataSiswa/tampiledit_siswa');
         //Function yang dipanggil ketika ingin melakukan update terhadap produk yang ada di dalam database
     }
 
@@ -91,19 +74,20 @@ class DataSiswa extends CI_Controller{
         $where = array('nomorinduk' => $nomorinduk);
         $this->Siswa->deletedatasiswa($where, $nomorinduk); //passing variable $id ke siswa_model
         $this->load->helper('url');
-        redirect('DataSiswa/getsiswa_hapus');
+        redirect('DataSiswa/tampilhapus_siswa');
         //Function yang dipanggil ketika ingin melakukan delete produk dari database
     }
 
-    public function editform($nomorinduk) {
-
+    public function tampilFormEdit($nomorinduk) {
         $query = $this->Siswa->getSiswa($nomorinduk);
         foreach ($query->result() as $siswa) {
             $data['nomorinduk'] = $siswa->nomorinduk;
             $data['namasiswa'] = $siswa->namasiswa;
             $data['angkatan'] = $siswa->angkatan;
-            $data['idkelas'] = $siswa->idkelas;
+            $data['id_kelas'] = $siswa->id_kelas;
         }
+        $data['tkelas_s'] = $this->Siswa->tampildKelas();
         $this->load->view('EditSiswa', $data);
     }
+
 }
