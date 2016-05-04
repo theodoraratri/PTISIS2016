@@ -20,11 +20,14 @@ and open the template in the editor.
         <div class="wrapper col1">
             <div id="header">
                 <div id="logo">
-                    <h1><?php echo anchor('Kelola/indexAdmin/', 'Sistem Informasi Siswa'); ?></h1>
+                    <h1><?php echo anchor('FilterLoginAdmin/indexAdmin/', 'Sistem Informasi Siswa'); ?></h1>
                     <p>SMA Pangudi Luhur Yogyakarta</p>
                 </div>
                 <div class="fl_right">
-                    <p>Tel: xxxxx xxxxxxxxxx | Mail: info@domain.com |<?php echo anchor('Kelola/index/', 'LOGOUT'); ?>| </p> </div>
+                    <form method="post" action="<?= base_url() ?>index.php/FilterLoginAdmin/logout">
+                        <p>Tel: xxxxx xxxxxxxxxx | Mail: info@domain.com</p>
+                        <p><b>I'm <?= $this->session->userdata('NIP') ?></b>|<input type="submit" value="Logout"></form> </p>
+                </div>
                 <br class="clear" />
             </div>
         </div>
@@ -32,7 +35,7 @@ and open the template in the editor.
         <div class="wrapper col2">
             <div id="topnav">
                 <ul>
-                    <li><?php echo anchor('Kelola/indexAdmin/', 'Halaman Admin'); ?>
+                    <li class="active"><?php echo anchor('FilterLoginAdmin/indexAdmin/', 'Halaman Admin'); ?>
                         <ul>
                         </ul>
                     </li>

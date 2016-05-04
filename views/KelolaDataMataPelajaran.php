@@ -79,52 +79,30 @@ and open the template in the editor.
         </div>
         <!-- ####################################################################################################### -->
         <div class="wrapper col3">
-            <h3>HAPUS DATA MATA PELAJARAN</h3>
-            <h1 align="center">Tabel Data Mata Pelajaraan</h1>
-            <table width="80%" border="1" cellpading="2">
-                <thead>
-                    <tr>
-                        <td align="center"><b>ID Mata Pelajaran</b></td>
-                        <td align="center"><b>Nama Mata Pelajaran</b></td>
-                        <td align="center"><b>Hapus</b></td>
-                    </tr>
-                </thead>
-                <?php
-                if (isset($dmapel)) {
-                    foreach ($dmapel as $mapel) {
-                        ?>
-                        <tr>
-                            <td><?php echo $mapel->id_mapel; ?></td>
-                            <td><?php echo $mapel->nama_mapel; ?></td>
-                            <td><?php echo anchor('DataMataPelajaran/deleteDataMataPelajaran/' . $mapel->id_mapel, 'Hapus'); ?></td>
-                        </tr>
-                        <?php
-                    }
-                }
-                ?> 
-            </table>
-        </form>
-    </div>
-    <!-- ####################################################################################################### -->
-    <div class="wrapper col5">
-        <div id="footer">
-            <div id="newsletter">
-                <h2>PENCARIAN GOOGLE</h2>
-                <p>Untuk melakukan pencarian <a href="http://www.google.com/">click here &raquo;</a></p>
+            <div id="featured_slide">
+                <div id="featured_wrap">
+                    <h3>KELOLA DATA MATA PELAJARAN</h3>
+                </div>
             </div>
-            <br class="clear" />
         </div>
-    </div>
-    <!-- ####################################################################################################### -->
-    <div class="wrapper col6">
-        <div id="copyright">
-            <p class="fl_left">Copyright &copy; 2016 - All Rights Reserved - <a href="#">Domain Name</a></p>
-            <br class="clear" />
+        <!-- ####################################################################################################### -->
+        <div class="wrapper col5">
+            <div id="footer">
+                <div id="newsletter">
+                    <h2>PENCARIAN GOOGLE</h2>
+                    <p>Untuk melakukan pencarian <a href="http://www.google.com/">click here &raquo;</a></p>
+                </div>
+                <br class="clear" />
+            </div>
         </div>
-    </div>
-    <?php
-    ?>
-</body>
+        <!-- ####################################################################################################### -->
+        <div class="wrapper col6">
+            <div id="copyright">
+                <p class="fl_left">Copyright &copy; 2016 - All Rights Reserved - <a href="#">Domain Name</a></p>
+                <br class="clear" />
+            </div>
+        </div>
+        <?php
+        ?>
+    </body>
 </html>
-
-
