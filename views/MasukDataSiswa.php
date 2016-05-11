@@ -48,9 +48,9 @@ and open the template in the editor.
                     </li>
                     <li><?php echo anchor('DataKelas/index/', 'Kelola Data Kelas'); ?>
                         <ul>
-                            <li><?php echo anchor('DataKelas/tampilmasuk_kelas/', 'Masukkan Data Guru'); ?></li>
-                            <li><?php echo anchor('DataKelas/tampilhapus_kelas/', 'Menghapus Data Guru'); ?></li>
-                            <li class="last"><?php echo anchor('DataKelas/tampiledit_kelas/', 'Mengedit Data Guru'); ?></li>
+                            <li><?php echo anchor('DataKelas/tampilmasuk_kelas/', 'Masukkan Data Kelas'); ?></li>
+                            <li><?php echo anchor('DataKelas/tampilhapus_kelas/', 'Menghapus Data Kelas'); ?></li>
+                            <li class="last"><?php echo anchor('DataKelas/tampiledit_kelas/', 'Mengedit Data Kelas'); ?></li>
                         </ul>
                     </li>
                     <li class="active"><?php echo anchor('DataSiswa/index/', 'Kelola Data Siswa'); ?>
@@ -81,18 +81,20 @@ and open the template in the editor.
         <div class="wrapper col3">
             <h2>TAMBAH DATA SISWA</h2>
             <form method="post" action="<?= base_url() ?>index.php/DataSiswa/insertDataSiswa">
+                <?php echo validation_errors(); ?>
+                <?php echo form_open('form'); ?>
                 <table> 
                     <tr>
                         <td><label>Nomor Induk&nbsp;&nbsp;</label></td>
-                        <td><input name="no" type="text" class="textbox"></td>
+                        <td><input name="no" type="text" class="textbox" required=""></td>
                     </tr>
                     <tr>
                         <td><label>Nama Siswa&nbsp;&nbsp;</label></td>
-                        <td><input name="nama" type="text" class="textbox"></td>
+                        <td><input name="nama" type="text" class="textbox" required=""></td>
                     </tr>
                     <tr>
                         <td><label>Angkatan &nbsp;&nbsp;</label></td>
-                        <td><input name="angk" type="text" class="textbox"></td>
+                        <td><input name="angk" type="text" class="textbox" required=""></td>
                     </tr>
                     <tr><td>Id Kelas</td>
                         <td><select name="idkel">
@@ -116,10 +118,10 @@ and open the template in the editor.
             <table width="80%" border="1" cellpading="2">
                 <thead>
                     <tr>
-                        <td><b>Nomor Induk</b></td>
-                        <td><b>Nama Siswa</b></td>
-                        <td><b>Angkatan</b></td>
-                        <td><b>Id Kelas</b></td>
+                        <td align="center"><b>Nomor Induk</b></td>
+                        <td align="center"><b>Nama Siswa</b></td>
+                        <td align="center"><b>Angkatan</b></td>
+                        <td align="center"><b>Id Kelas</b></td>
                     </tr>
                 </thead>
                 <?php

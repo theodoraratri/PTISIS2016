@@ -20,11 +20,14 @@ and open the template in the editor.
         <div class="wrapper col1">
             <div id="header">
                 <div id="logo">
-                    <h1><?php echo anchor('Kelola/indexAdmin/', 'Sistem Informasi Siswa'); ?></h1>
+                    <h1><?php echo anchor('FilterLoginAdmin/indexAdmin/', 'Sistem Informasi Siswa'); ?></h1>
                     <p>SMA Pangudi Luhur Yogyakarta</p>
                 </div>
                 <div class="fl_right">
-                    <p>Tel: xxxxx xxxxxxxxxx | Mail: info@domain.com |<?php echo anchor('Kelola/index/', 'LOGOUT'); ?>| </p>       </div>
+                    <form method="post" action="<?= base_url() ?>index.php/FilterLoginAdmin/logout">
+                        <p>Tel: xxxxx xxxxxxxxxx | Mail: info@domain.com</p>
+                        <p><b>I'm <?= $this->session->userdata('NIP') ?></b>|<input type="submit" value="Logout"></form> </p>
+                </div>
                 <br class="clear" />
             </div>
         </div>
@@ -32,7 +35,7 @@ and open the template in the editor.
         <div class="wrapper col2">
             <div id="topnav">
                 <ul>
-                    <li><?php echo anchor('Kelola/indexAdmin/', 'Halaman Admin'); ?>
+                    <li class="active"><?php echo anchor('FilterLoginAdmin/indexAdmin/', 'Halaman Admin'); ?>
                         <ul>
                         </ul>
                     </li>
@@ -45,9 +48,9 @@ and open the template in the editor.
                     </li>
                     <li><?php echo anchor('DataKelas/index/', 'Kelola Data Kelas'); ?>
                         <ul>
-                            <li><?php echo anchor('DataKelas/tampilmasuk_kelas/', 'Masukkan Data Guru'); ?></li>
-                            <li><?php echo anchor('DataKelas/tampilhapus_kelas/', 'Menghapus Data Guru'); ?></li>
-                            <li class="last"><?php echo anchor('DataKelas/tampiledit_kelas/', 'Mengedit Data Guru'); ?></li>
+                            <li><?php echo anchor('DataKelas/tampilmasuk_kelas/', 'Masukkan Data Kelas'); ?></li>
+                            <li><?php echo anchor('DataKelas/tampilhapus_kelas/', 'Menghapus Data Kelas'); ?></li>
+                            <li class="last"><?php echo anchor('DataKelas/tampiledit_kelas/', 'Mengedit Data Kelas'); ?></li>
                         </ul>
                     </li>
                     <li class="active"><?php echo anchor('DataSiswa/index/', 'Kelola Data Siswa'); ?>
@@ -77,7 +80,7 @@ and open the template in the editor.
         <!-- ####################################################################################################### -->
         <div class="wrapper col3">
             <h3>EDIT DATA GURU</h3>
-            <h1 align="center">Form Edit Data Siswa</h1>
+            <h1 align="center">Form Edit Data Guru</h1>
             <form method="post" action="<?= base_url() ?>index.php/DataSiswa/updateDataSiswa">
                 <table> 
                     <tr>
@@ -86,11 +89,11 @@ and open the template in the editor.
                     </tr>
                     <tr>
                         <td><label>Nama Siswa&nbsp;&nbsp;</label></td>
-                        <td><input value="<?php echo $namasiswa; ?>" name="nama" type="text" class="textbox"></td>
+                        <td><input value="<?php echo $namasiswa; ?>" name="nama" type="text" class="textbox" required=""></td>
                     </tr>
                     <tr>
                         <td><label>Angkatan/tahun&nbsp;&nbsp;</label></td>
-                        <td><input value="<?php echo $angkatan; ?>" name="angk" type="text" class="textbox"readonly></td>
+                        <td><input value="<?php echo $angkatan; ?>" name="angk" type="text" class="textbox" readonly></td>
                     </tr>
                     <tr><td>Id Kelas</td>
                         <td><select name="idkel">
@@ -107,6 +110,7 @@ and open the template in the editor.
                         </td></tr>
                 </table>
                 <input type="submit" value="Simpan">
+                <input type="submit" value="Batal" <?php echo anchor('DataKelas/tampiledit_kelas/', ' ') ?>
             </form>
         </div>
         <!-- ####################################################################################################### -->
