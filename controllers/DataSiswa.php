@@ -31,6 +31,7 @@ class DataSiswa extends CI_Controller {
     }
 
     function tampilmasuk_siswa() {
+        $this->load->library('form_validation');
         $this->load->model('Siswa');
         $data['ikelas_s'] = $this->Siswa->tampildKelas();
         $query = $this->Siswa->getAllSiswa();
@@ -46,16 +47,28 @@ class DataSiswa extends CI_Controller {
     }
 
     public function insertDataSiswa() {
-        $data = array(
-            'nomorinduk' => $this->input->post('no'),
-            'namasiswa' => $this->input->post('nama'),
-            'angkatan' => $this->input->post('angk'),
-            'id_kelas' => $this->input->post('idkel')
-        );
-        $this->Siswa->insertdatasiswa($data);
-        $this->load->helper('url');
-        redirect('DataSiswa/tampilmasuk_siswa'); //redirect page ke halaman utama controller siswa
-        //Function yang dipanggil ketika ingin memasukan siswa ke dalam database
+        $this->load->helper(array('form', 'url'));
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('no', 'Nomor Induk', 'required|max_length[20]');
+        $this->form_validation->set_rules('nama', 'Nama Siswa', 'required|max_length[50]');
+        $this->form_validation->set_rules('angk', 'Angkatan', 'required|max_length[10]|integer');
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->model('Siswa');
+            $data['ikelas_s'] = $this->Siswa->tampildKelas();
+            $query = $this->Siswa->getAllSiswa();
+            $data['isiswa'] = $query->result();
+            $this->load->view('MasukDataSiswa', $data);
+        } else {
+            $data = array(
+                'nomorinduk' => $this->input->post('no'),
+                'namasiswa' => $this->input->post('nama'),
+                'angkatan' => $this->input->post('angk'),
+                'id_kelas' => $this->input->post('idkel')
+            );
+            $this->Siswa->insertdatasiswa($data);
+            $this->load->helper('url');
+            redirect('DataSiswa/tampilmasuk_siswa'); //redirect page ke halaman utama controller siswa
+        }//Function yang dipanggil ketika ingin memasukan siswa ke dalam database
     }
 
     public function updateDataSiswa() {
