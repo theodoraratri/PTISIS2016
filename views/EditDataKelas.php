@@ -48,9 +48,9 @@ and open the template in the editor.
                     </li>
                     <li class="active"><?php echo anchor('DataKelas/index/', 'Kelola Data Kelas'); ?>
                         <ul>
-                            <li><?php echo anchor('DataKelas/tampilmasuk_kelas/', 'Masukkan Data Guru'); ?></li>
-                            <li><?php echo anchor('DataKelas/tampilhapus_kelas/', 'Menghapus Data Guru'); ?></li>
-                            <li class="last"><?php echo anchor('DataKelas/tampiledit_kelas/', 'Mengedit Data Guru'); ?></li>
+                            <li><?php echo anchor('DataKelas/tampilmasuk_kelas/', 'Masukkan Data Kelas'); ?></li>
+                            <li><?php echo anchor('DataKelas/tampilhapus_kelas/', 'Menghapus Data Kelas'); ?></li>
+                            <li class="last"><?php echo anchor('DataKelas/tampiledit_kelas/', 'Mengedit Data Kelas'); ?></li>
                         </ul>
                     </li>
                     <li><?php echo anchor('DataSiswa/index/', 'Kelola Data Siswa'); ?>
@@ -85,9 +85,10 @@ and open the template in the editor.
                 <table width="80%" border="1" cellpading="2">
                     <thead>
                         <tr>
-                            <td><b>ID Kelas</b></td>
-                            <td><b>Nama Kelas</b></td>
-                            <td><b>NIP</b></td>
+                            <td align="center"><b>ID Kelas</b></td>
+                            <td align="center"><b>Nama Kelas</b></td>
+                            <td align="center"><b>NIP</b></td>
+                            <td align="center"><b>Edit</b></td>
                         </tr>
                     </thead>
                     <?php
