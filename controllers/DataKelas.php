@@ -23,14 +23,26 @@ class DataKelas extends CI_Controller {
     }
 
     public function insertDataKelas() {
-        $data = array(
-            'id_kelas' => $this->input->post('id'),
-            'nama_kelas' => $this->input->post('nama'),
-            'nip' => $this->input->post('nip')
-        );
-        $this->Kelas->insertdatakelas($data); //dari model
-        $this->load->helper('url');
-        redirect('DataKelas/tampilmasuk_kelas'); //redirect page ke halaman utama controller kelas
+        $this->load->helper(array('form', 'url'));
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('id', 'ID Kelas', 'required|max_length[30]');
+        $this->form_validation->set_rules('nama', 'Nama Kelas', 'required|max_length[20]');
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->model('Kelas');
+            $data['inip_k'] = $this->Kelas->tampilNIP();
+            $query = $this->Kelas->getAllKelas();
+            $data['ikelas'] = $query->result();
+            $this->load->view('MasukDataKelas', $data);
+        } else {
+            $data = array(
+                'id_kelas' => $this->input->post('id'),
+                'nama_kelas' => $this->input->post('nama'),
+                'nip' => $this->input->post('nip')
+            );
+            $this->Kelas->insertdatakelas($data); //dari model
+            $this->load->helper('url');
+            redirect('DataKelas/tampilmasuk_kelas');
+        } //redirect page ke halaman utama controller kelas
         //Function yang dipanggil ketika ingin memasukan kelas ke dalam database
     }
 
@@ -61,6 +73,7 @@ class DataKelas extends CI_Controller {
     }
 
     function tampilmasuk_kelas() {
+        $this->load->library('form_validation');
         $this->load->model('Kelas');
         $data['inip_k'] = $this->Kelas->tampilNIP();
         $query = $this->Kelas->getAllKelas();
