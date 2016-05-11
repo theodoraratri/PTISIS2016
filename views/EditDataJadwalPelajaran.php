@@ -41,16 +41,16 @@ and open the template in the editor.
                     </li>
                     <li><?php echo anchor('DataGuru/index/', 'Kelola Data Guru'); ?>
                         <ul>
-                            <li><?php echo anchor('DataGuru/tampilmasuk_guru/', 'Masukkan Data Guru'); ?></li>
-                            <li><?php echo anchor('DataGuru/tampilhapus_guru/', 'Menghapus Data Guru'); ?></li>
-                            <li class="last"><?php echo anchor('DataGuru/tampiledit_guru/', 'Mengedit Data Guru'); ?></li>
+                            <li><?php echo anchor('DataGuru/tampilmasuk_guru/', 'Masukkan Data Kelas'); ?></li>
+                            <li><?php echo anchor('DataGuru/tampilhapus_guru/', 'Menghapus Data Kelas'); ?></li>
+                            <li class="last"><?php echo anchor('DataGuru/tampiledit_guru/', 'Mengedit Data Kelas'); ?></li>
                         </ul>
                     </li>
                     <li><?php echo anchor('DataKelas/index/', 'Kelola Data Kelas'); ?>
                         <ul>
-                            <li><?php echo anchor('DataKelas/tampilmasuk_kelas/', 'Masukkan Data Guru'); ?></li>
-                            <li><?php echo anchor('DataKelas/tampilhapus_kelas/', 'Menghapus Data Guru'); ?></li>
-                            <li class="last"><?php echo anchor('DataKelas/tampiledit_kelas/', 'Mengedit Data Guru'); ?></li>
+                            <li><?php echo anchor('DataKelas/tampilmasuk_kelas/', 'Masukkan Data Kelas'); ?></li>
+                            <li><?php echo anchor('DataKelas/tampilhapus_kelas/', 'Menghapus Data Kelas'); ?></li>
+                            <li class="last"><?php echo anchor('DataKelas/tampiledit_kelas/', 'Mengedit Data Kelas'); ?></li>
                         </ul>
                     </li>
                     <li><?php echo anchor('DataSiswa/index/', 'Kelola Data Siswa'); ?>
@@ -84,13 +84,14 @@ and open the template in the editor.
             <table width="80%" border="1" cellpading="2">
                 <thead>
                     <tr>
-                        <td><b>Kode Jadwal</b></td>
-                        <td><b>NIP</b></td>
-                        <td><b>ID Mapel</b></td>
-                        <td><b>ID Kelas</b></td>
-                        <td><b>Hari</b></td>
-                        <td><b>Jam</b></td>
-                        <td><b>Tahun Ajaran</b></td>
+                        <td align="center"><b>Kode Jadwal</b></td>
+                        <td align="center"><b>NIP</b></td>
+                        <td align="center"><b>ID Mapel</b></td>
+                        <td align="center"><b>ID Kelas</b></td>
+                        <td align="center"><b>Hari</b></td>
+                        <td align="center"><b>Jam</b></td>
+                        <td align="center"><b>Tahun Ajaran</b></td>
+                        <td align="center"><b>Edit</b></td>
                     </tr>
                 </thead>
                 <?php
