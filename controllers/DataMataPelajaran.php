@@ -25,6 +25,7 @@ class DataMataPelajaran extends CI_Controller {
     }
 
     function tampilmasuk_mapel() {
+        $this->load->library('form_validation');
         $this->load->model('MataPelajaran');
         $query = $this->MataPelajaran->getAllMataPelajaran();
         $data['imapel'] = $query->result();
@@ -46,13 +47,25 @@ class DataMataPelajaran extends CI_Controller {
     }
 
     public function insertDataMataPelajaran() {
-        $data = array(
-            'id_mapel' => $this->input->post('id_mp'),
-            'nama_mapel' => $this->input->post('nm_mp'),
-        );
-        $this->MataPelajaran->insertdatamatapelajaran($data);
-        $this->load->helper('url');
-        redirect('DataMataPelajaran/tampilmasuk_mapel'); //redirect page ke halaman utama controller mapel
+        $this->load->helper(array('form', 'url'));
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('id_mp', 'ID Mata Pelajaran', 'required|max_length[30]');
+        $this->form_validation->set_rules('nm_mp', 'Nama Mata Pelajaran', 'required|max_length[50]');
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->model('MataPelajaran');
+            $query = $this->MataPelajaran->getAllMataPelajaran();
+            $data['imapel'] = $query->result();
+            $this->load->view('MasukDataMataPelajaran', $data);
+        } else {
+            $data = array(
+                'id_mapel' => $this->input->post('id_mp'),
+                'nama_mapel' => $this->input->post('nm_mp'),
+            );
+            $this->MataPelajaran->insertdatamatapelajaran($data);
+            $this->load->helper('url');
+            redirect('DataMataPelajaran/tampilmasuk_mapel');
+        }
+        //redirect page ke halaman utama controller mapel
         //Function yang dipanggil ketika ingin memasukan mapel ke dalam database
     }
 
@@ -61,7 +74,7 @@ class DataMataPelajaran extends CI_Controller {
             'id_mapel' => $this->input->post('id_mp'),
             'nama_mapel' => $this->input->post('nm_mp'),
         );
-        $this->MataPelajaran->updatedatamatapelajaran($id_mp); //passing variable $id ke mapel model
+        $this->MataPelajaran->updatedatamatapelajaran($id_mp); //passing variable $id ke mapel modelinsertDataMataPelajaran
         redirect('DataMataPelajaran/tampiledit_mapel');
         //Function yang dipanggil ketika ingin melakukan update terhadap produk yang ada di dalam database
     }

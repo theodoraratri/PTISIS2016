@@ -25,6 +25,7 @@ class DataGuru extends CI_Controller {
     }
 
     function tampilmasuk_guru() {
+        $this->load->library('form_validation');
         $this->load->model('Guru');
         $query = $this->Guru->getAllGuru();
         $data['iguru'] = $query->result();
@@ -46,15 +47,26 @@ class DataGuru extends CI_Controller {
     }
 
     public function insertDataGuru() {
-        $data = array(
-            'nip' => $this->input->post('nipe'),
-            'namaguru' => $this->input->post('nmguru'),
-            'password' => $this->input->post('passguru')
-        );
-        $this->Guru->insertdataguru($data);
-        $this->load->helper('url');
-        redirect('DataGuru/tampilmasuk_guru'); //redirect page ke halaman utama controller guru
-        //Function yang dipanggil ketika ingin memasukan guru ke dalam database
+        $this->load->helper(array('form', 'url'));
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('nipe', 'NIP', 'required|max_length[30]|integer');
+        $this->form_validation->set_rules('nmguru', 'Nama Guru', 'required|max_length[50]');
+        $this->form_validation->set_rules('passguru', 'Password Guru', 'required|max_length[20]');
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->model('Guru');
+            $query = $this->Guru->getAllGuru();
+            $data['iguru'] = $query->result();
+            $this->load->view('MasukDataGuru', $data);
+        } else {
+            $data = array(
+                'nip' => $this->input->post('nipe'),
+                'namaguru' => $this->input->post('nmguru'),
+                'password' => $this->input->post('passguru')
+            );
+            $this->Guru->insertdataguru($data);
+            $this->load->helper('url');
+            redirect('DataGuru/tampilmasuk_guru'); //redirect page ke halaman utama controller guru
+        } //Function yang dipanggil ketika ingin memasukan guru ke dalam database
     }
 
     public function updateDataGuru() {
