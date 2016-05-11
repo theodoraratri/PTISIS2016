@@ -48,9 +48,9 @@ and open the template in the editor.
                     </li>
                     <li><?php echo anchor('DataKelas/index/', 'Kelola Data Kelas'); ?>
                         <ul>
-                            <li><?php echo anchor('DataKelas/tampilmasuk_kelas/', 'Masukkan Data Guru'); ?></li>
-                            <li><?php echo anchor('DataKelas/tampilhapus_kelas/', 'Menghapus Data Guru'); ?></li>
-                            <li class="last"><?php echo anchor('DataKelas/tampiledit_kelas/', 'Mengedit Data Guru'); ?></li>
+                            <li><?php echo anchor('DataKelas/tampilmasuk_kelas/', 'Masukkan Data Kelas'); ?></li>
+                            <li><?php echo anchor('DataKelas/tampilhapus_kelas/', 'Menghapus Data Kelas'); ?></li>
+                            <li class="last"><?php echo anchor('DataKelas/tampiledit_kelas/', 'Mengedit Data Kelas'); ?></li>
                         </ul>
                     </li>
                     <li><?php echo anchor('DataSiswa/index/', 'Kelola Data Siswa'); ?>
@@ -89,10 +89,11 @@ and open the template in the editor.
                     </tr>
                     <tr>
                         <td><label>Nama Mata Pelajaran&nbsp;&nbsp;</label></td>
-                        <td><input value="<?php echo $nama_mapel; ?>" name="nm_mp" type="text" class="textbox"></td>
+                        <td><input value="<?php echo $nama_mapel; ?>" name="nm_mp" type="text" class="textbox" required=""></td>
                     </tr>
                 </table>
                 <input type="submit" value="Simpan">
+                <input type="submit" value="Batal" <?php echo anchor('DataMataPelajaran/tampiledit_mapel/', ' ') ?>
             </form>
         </div>
         <!-- ####################################################################################################### -->
