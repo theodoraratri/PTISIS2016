@@ -18,7 +18,7 @@ class DataJadwalPelajaran extends CI_Controller {
         $this->load->library('form_validation');
         $this->form_validation->set_rules('kode', 'Kode Jadwal Pelajaran', 'required|max_length[20]');
         $this->form_validation->set_rules('jam', 'Jam', 'required|max_length[30]');
-        $this->form_validation->set_rules('tahun', 'Tahun Ajaran', 'required|max_length[10]|integer');
+       
         if ($this->form_validation->run() == FALSE) {
             $this->load->model('JadwalPelajaran');
             $data['ikelas_jp'] = $this->JadwalPelajaran->tampildKelas();
@@ -34,8 +34,8 @@ class DataJadwalPelajaran extends CI_Controller {
                 'nip' => $this->input->post('nip'),
                 'id_kelas' => $this->input->post('kelas'),
                 'hari' => $this->input->post('hr'),
-                'jam' => $this->input->post('jam'),
-                'tahun_ajaran' => $this->input->post('tahun'));
+                'jam' => $this->input->post('jam'));
+               
             $this->JadwalPelajaran->insertdatajadwalpelajaran($data);
             $this->load->helper('url');
             redirect('DataJadwalPelajaran/tampilmasuk_jadwalpelajaran');
@@ -58,8 +58,8 @@ class DataJadwalPelajaran extends CI_Controller {
             'nip' => $this->input->post('nip'),
             'id_kelas' => $this->input->post('kelas'),
             'hari' => $this->input->post('hr'),
-            'jam' => $this->input->post('jam'),
-            'tahun_ajaran' => $this->input->post('tahun'));
+            'jam' => $this->input->post('jam'));
+          
         $this->JadwalPelajaran->updatedatajadwalpelajaran($data);
         redirect('DataJadwalPelajaran/tampiledit_jadwalpelajaran'); //passing variable $data ke products_model
     }
@@ -71,21 +71,21 @@ class DataJadwalPelajaran extends CI_Controller {
         $data['imapel_jp'] = $this->JadwalPelajaran->tampilIdMapel();
         $data['inip_jp'] = $this->JadwalPelajaran->tampilNIP();
         $query = $this->JadwalPelajaran->getAllJadwal();
-        $data['ijadwal'] = $query->result();
+        $data['ijadwal'] = $query;
         $this->load->view('MasukDataJadwalPelajaran', $data);
     }
 
     function tampilhapus_jadwalpelajaran() {
         $this->load->model('JadwalPelajaran');
         $query = $this->JadwalPelajaran->getAllJadwal();
-        $data['djadwal'] = $query->result();
+        $data['djadwal'] = $query;
         $this->load->view('HapusDataJadwalPelajaran', $data);
     }
 
     function tampiledit_jadwalpelajaran() {
         $this->load->model('JadwalPelajaran');
         $query = $this->JadwalPelajaran->getAllJadwal();
-        $data['ujadwal'] = $query->result();
+        $data['ujadwal'] = $query;
         $this->load->view('EditDataJadwalPelajaran', $data);
     }
 
@@ -95,7 +95,7 @@ class DataJadwalPelajaran extends CI_Controller {
             $data['kode_jadwal'] = $jadwal->kode_jadwal;
             $data['hari'] = $jadwal->hari;
             $data['jam'] = $jadwal->jam;
-            $data['tahun_ajaran'] = $jadwal->tahun_ajaran;
+           
         }
         $data['tkelas_jp'] = $this->JadwalPelajaran->tampildKelas();
         $data['tmapel_jp'] = $this->JadwalPelajaran->tampilIdMapel();
