@@ -22,10 +22,18 @@ class KemajuanKelas extends CI_Model{
         return $this->db->query($sql);
     }
 
-    public function tampilJumlahHadir($tgl,$id_kelas) {//menampilkan jumlah kehadiran pada mata pelajaran dihari tersebut
-        $query = "select count(status) from data_absensi where tgl='".$tgl."' and id_kelas='".$id_kelas."'and status='hadir'"
-                . "group by status";
-        return $this->db->query($query);
+    public function tampilJumlahHadir($tgl,$id_kelas,$id_mapel) {//menampilkan jumlah kehadiran pada mata pelajaran dihari tersebut
+        $this->db->select("id_kelas,id_mapel,tgl,sum(case when status = 'hadir' then 1 else 0 end) as hadir");
+        $this->db->from('data_absensi');
+        $this->db->where('tgl',$tgl);
+        $this->db->where('id_kelas',$id_kelas);
+        $this->db->where('id_mapel',$id_mapel);
+        $this->db->group_by("id_kelas,tgl");
+        $query = $this->db->get()->result();
+        return $query;
+//         $query = "select count(status) from data_absensi where tgl='".$tgl."' and id_kelas='".$id_kelas."'and status='hadir'"
+//                . "group by status";
+//        return $this->db->query($query);
     }
     public function masukKemajuanKelas($data) {
         $this->db->insert('data-kemajuan', $data);
@@ -51,5 +59,10 @@ class KemajuanKelas extends CI_Model{
     public function getIdJadwal(){
         $query = $this->db->query("select id_jadwal from jadwal_pelajaran");
         return $query;
+    }
+    function ambilNIPJadwal($id_kelas1,$id_mapel1){
+        $this->db->where('id_kelas',$id_kelas1);
+        $this->db->where('id_mapel',$id_mapel1 );       
+        return $this->db->get('jadwal_pelajaran');
     }
 }
