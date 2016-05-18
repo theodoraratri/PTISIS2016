@@ -48,9 +48,9 @@ and open the template in the editor.
                     </li>
                     <li><?php echo anchor('DataKelas/index/', 'Kelola Data Kelas'); ?>
                         <ul>
-                            <li><?php echo anchor('DataKelas/tampilmasuk_kelas/', 'Masukkan Data Guru'); ?></li>
-                            <li><?php echo anchor('DataKelas/tampilhapus_kelas/', 'Menghapus Data Guru'); ?></li>
-                            <li class="last"><?php echo anchor('DataKelas/tampiledit_kelas/', 'Mengedit Data Guru'); ?></li>
+                            <li><?php echo anchor('DataKelas/tampilmasuk_kelas/', 'Masukkan Data Kelas'); ?></li>
+                            <li><?php echo anchor('DataKelas/tampilhapus_kelas/', 'Menghapus Data Kelas'); ?></li>
+                            <li class="last"><?php echo anchor('DataKelas/tampiledit_kelas/', 'Mengedit Data Kelas'); ?></li>
                         </ul>
                     </li>
                     <li><?php echo anchor('DataSiswa/index/', 'Kelola Data Siswa'); ?>
@@ -84,13 +84,17 @@ and open the template in the editor.
             <table width="80%" border="1" cellpading="2">
                 <thead>
                     <tr>
-                        <td><b>Kode Jadwal</b></td>
-                        <td><b>NIP</b></td>
-                        <td><b>ID Mapel</b></td>
-                        <td><b>ID Kelas</b></td>
-                        <td><b>Hari</b></td>
-                        <td><b>Jam</b></td>
-                        <td><b>Tahun Ajaran</b></td>
+                        <td align="center"><b>Kode Jadwal</b></td>
+                        <td align="center"><b>NIP</b></td>
+                        <td align="center"><b>Nama Guru</b></td>
+                        <td align="center"><b>ID Mapel</b></td>
+                         <td align="center"><b>Nama Mapel</b></td>
+                        <td align="center"><b>ID Kelas</b></td>
+                         <td align="center"><b>Nama kelas</b></td>
+                        <td align="center"><b>Hari</b></td>
+                        <td align="center"><b>Jam</b></td>
+
+                        <td align="center"><b>Hapus</b></td>
                     </tr>
                 </thead>
                 <?php
@@ -99,12 +103,15 @@ and open the template in the editor.
                         ?>
                         <tr>
                             <td><?php echo $row->kode_jadwal; ?></td>
-                            <td><?php echo $row->id_mapel; ?></td>
                             <td><?php echo $row->nip; ?></td>
+                            <td><?php echo $row->nama_guru; ?></td>
+                            <td><?php echo $row->id_mapel; ?></td>
+                            <td><?php echo $row->nama_mapel; ?></td>
                             <td><?php echo $row->id_kelas; ?></td>
+                            <td><?php echo $row->nama_kelas; ?></td>
                             <td><?php echo $row->hari; ?></td>
                             <td><?php echo $row->jam; ?></td>
-                            <td><?php echo $row->tahun_ajaran; ?></td>
+
                             <td><?php echo anchor('DataJadwalPelajaran/deleteDataJadwalPelajaran/' . $row->kode_jadwal, 'Hapus'); ?></td>
                         </tr>
                         <?php

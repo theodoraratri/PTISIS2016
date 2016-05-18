@@ -48,9 +48,9 @@ and open the template in the editor.
                     </li>
                     <li><?php echo anchor('DataKelas/index/', 'Kelola Data Kelas'); ?>
                         <ul>
-                            <li><?php echo anchor('DataKelas/tampilmasuk_kelas/', 'Masukkan Data Guru'); ?></li>
-                            <li><?php echo anchor('DataKelas/tampilhapus_kelas/', 'Menghapus Data Guru'); ?></li>
-                            <li class="last"><?php echo anchor('DataKelas/tampiledit_kelas/', 'Mengedit Data Guru'); ?></li>
+                            <li><?php echo anchor('DataKelas/tampilmasuk_kelas/', 'Masukkan Data Kelas'); ?></li>
+                            <li><?php echo anchor('DataKelas/tampilhapus_kelas/', 'Menghapus Data Kelas'); ?></li>
+                            <li class="last"><?php echo anchor('DataKelas/tampiledit_kelas/', 'Mengedit Data Kelas'); ?></li>
                         </ul>
                     </li>
                     <li><?php echo anchor('DataSiswa/index/', 'Kelola Data Siswa'); ?>
@@ -81,10 +81,12 @@ and open the template in the editor.
         <div class="wrapper col3">
             <h2>TAMBAH DATA JADWAL PELAJAR</h2>
             <form method="post" action="<?= base_url(); ?>index.php/DataJadwalPelajaran/insertDataJadwalPelajaran">
+                <?php echo validation_errors(); ?>
+                <?php echo form_open('form'); ?>
                 <table> 
                     <tr>
                         <td><label>Kode Jadwal &nbsp;&nbsp;</label></td>
-                        <td><input name="kode" type="text" class="textbox"></td>
+                        <td><input name="kode" type="text" class="textbox" required=""></td>
                     </tr>
                     <tr><td>NIP</td>
                         <td><select name="nip">
@@ -93,7 +95,7 @@ and open the template in the editor.
                                 if (isset($inip_jp)) {
                                     foreach ($inip_jp->result() as $row) {
                                         ?>
-                                        <option value="<?php echo $row->nip; ?>"><?php echo $row->nip; ?></option>
+                                        <option value="<?php echo $row->nip; ?>"><?php echo $row->nama_guru; ?></option>
                                         <?php
                                     }
                                 }
@@ -108,7 +110,7 @@ and open the template in the editor.
                                 if (isset($imapel_jp)) {
                                     foreach ($imapel_jp->result() as $row) {
                                         ?>
-                                        <option value="<?php echo $row->id_mapel; ?>"><?php echo $row->id_mapel; ?></option>
+                                        <option value="<?php echo $row->id_mapel; ?>"><?php echo $row->nama_mapel; ?></option>
                                         <?php
                                     }
                                 }
@@ -123,7 +125,7 @@ and open the template in the editor.
                                     foreach ($ikelas_jp->result() as $row) {
                                         ?>
 
-                                        <option value="<?php echo $row->id_kelas; ?>"><?php echo $row->id_kelas; ?></option>
+                                        <option value="<?php echo $row->id_kelas; ?>"><?php echo $row->nama_kelas; ?></option>
                                         <?php
                                     }
                                 }
@@ -144,13 +146,10 @@ and open the template in the editor.
                     </tr>
                     <tr>
                         <td><label>Jam &nbsp;&nbsp;</label></td>
-                        <td><input name="jam" type="text" class="textbox"></td>
+                        <td><input name="jam" type="text" class="textbox" required=""></td>
                     </tr>
 
-                    <tr>
-                        <td><label>Tahun Ajaran &nbsp;&nbsp;</label></td>
-                        <td><input name="tahun" type="text" class="textbox"></td>
-                    </tr>
+                   
                 </table>
                 <input type="submit" value="Simpan">
             </form>
@@ -158,13 +157,16 @@ and open the template in the editor.
             <table width="80%" border="1" cellpading="2">
                 <thead>
                     <tr>
-                        <td><b>Kode Jadwal</b></td>
-                        <td><b>NIP</b></td>
-                        <td><b>ID Mapel</b></td>
-                        <td><b>ID Kelas</b></td>
-                        <td><b>Hari</b></td>
-                        <td><b>Jam</b></td>
-                        <td><b>Tahun Ajaran</b></td>
+                        <td align="center"><b>Kode Jadwal</b></td>
+                        <td align="center"><b>NIP</b></td>
+                        <td align="center"><b>Nama Guru</b></td>                        
+                        <td align="center"><b>ID Mapel</b></td>
+                         <td align="center"><b>Nama Mapel</b></td>
+                        <td align="center"><b>ID Kelas</b></td>
+                         <td align="center"><b>Nama kelas</b></td>
+                        <td align="center"><b>Hari</b></td>
+                        <td align="center"><b>Jam</b></td>
+                        
                     </tr>
                 </thead>
 
@@ -174,12 +176,15 @@ and open the template in the editor.
                         ?>
                         <tr>
                             <td><?php echo $row->kode_jadwal; ?></td>
-                            <td><?php echo $row->id_mapel; ?></td>
                             <td><?php echo $row->nip; ?></td>
+                             <td><?php echo $row->nama_guru; ?></td>
+                            <td><?php echo $row->id_mapel; ?></td>
+                            <td><?php echo $row->nama_mapel; ?></td>
                             <td><?php echo $row->id_kelas; ?></td>
+                            <td><?php echo $row->nama_kelas; ?></td>
                             <td><?php echo $row->hari; ?></td>
                             <td><?php echo $row->jam; ?></td>
-                            <td><?php echo $row->tahun_ajaran; ?></td>
+                            
                         </tr>
                         <?php
                     }

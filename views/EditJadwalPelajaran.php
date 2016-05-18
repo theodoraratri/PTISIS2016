@@ -79,7 +79,7 @@ and open the template in the editor.
         </div>
         <!-- ####################################################################################################### -->
         <div class="wrapper col3">
-            <h2>TAMBAH DATA JADWAL PELAJAR</h2>
+            <h2>EDIT DATA JADWAL PELAJARAN</h2>
             <form method="post" action="<?= base_url(); ?>index.php/DataJadwalPelajaran/updateDataJadwalPelajaran">
                 <table> 
                     <tr>
@@ -92,7 +92,7 @@ and open the template in the editor.
                                 if (isset($tnip_jp)) {
                                     foreach ($tnip_jp->result() as $row) {
                                         ?>
-                                        <option value="<?php echo $row->nip; ?>"><?php echo $row->nip; ?></option>
+                                        <option value="<?php echo $row->nip; ?>"><?php echo $row->nama_guru; ?></option>
                                         <?php
                                     }
                                 }
@@ -105,7 +105,7 @@ and open the template in the editor.
                                 if (isset($tmapel_jp)) {
                                     foreach ($tmapel_jp->result() as $row) {
                                         ?>
-                                        <option value="<?php echo $row->id_mapel; ?>"><?php echo $row->id_mapel; ?></option>
+                                        <option value="<?php echo $row->id_mapel; ?>"><?php echo $row->nama_mapel; ?></option>
                                         <?php
                                     }
                                 }
@@ -118,7 +118,7 @@ and open the template in the editor.
                                 if (isset($tkelas_jp)) {
                                     foreach ($tkelas_jp->result() as $row) {
                                         ?>
-                                        <option value="<?php echo $row->id_kelas; ?>"><?php echo $row->id_kelas; ?></option>
+                                        <option value="<?php echo $row->id_kelas; ?>"><?php echo $row->nama_kelas; ?></option>
                                         <?php
                                     }
                                 }
@@ -140,10 +140,7 @@ and open the template in the editor.
                         <td><label>Jam &nbsp;&nbsp;</label></td>
                         <td><input value="<?php echo $jam; ?>" name="jam" type="text" class="textbox" required=""></td>
                     </tr>
-                    <tr>
-                        <td><label>Tahun Ajaran &nbsp;&nbsp;</label></td>
-                        <td><input value="<?php echo $tahun_ajaran; ?>" name="tahun" type="text" class="textbox" required=""></td>
-                    </tr>
+                   
                 </table>
                 <input type="submit" value="Simpan">
                 <input type="submit" value="Batal" <?php echo anchor('DataJadwalPelajaran/tampiledit_jadwalpelajaran/', ' ') ?>
