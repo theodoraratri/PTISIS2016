@@ -18,6 +18,7 @@ class DataAbsensi extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->model("Absensi");
+        $this->load->library('session'); //coba buat session untuk inputkan selanjutnya
     }
 
     function getAbsen_masuk() {
@@ -29,49 +30,20 @@ class DataAbsensi extends CI_Controller {
 
 //
     public function index() {
-//        $query = $this->db->get("Absensi");
-//        $data['record'] = $query->result();
-//        $this->load->helper('url');
-        $this->load->view("MasukAbsensi");
+        $this->load->view("TampilDataKemajuan");
     }
 
-//    public function tampilDataSiswa(){
-//        $data['Absensi'] = $this->Absensi->get;
-//        $this->load->view('MasukAbsensi', $data);
-//    }
-//   
-//    public function masukAbsensi() {
-//        $this->load->model('Absensi');
-//        $id_mapel = $this->input->post("id_mapel");
-//        $id_kelas = $this->input->post("id_kelas");
-//        $tgl = $this->input->post("tgl");
-//        $no_induk = $this->input->post("no_induk");
-//        $hadir = $this->input->post("hadir");
-//        $alfa = $this->input->post("alfa");
-//        $izin = $this->input->post("izin");
-//        $sakit = $this->input->post("sakit");
-//        $i = 0;
-//
-//        foreach ($this->input->postid_mapel as $row) {
-//            $data['id_mapel'] = $id_mapel[$i];
-//            $data['id_kelas'] = $id_kelas[$i];
-//            $data['tgl'] = $tgl[$i];
-//            $data['no_induk'] = $no_induk[$i];
-//            $data['hadir'] = $hadir[$i];
-//            $data['alfa'] = $alfa[$i];
-//            $data['izin'] = $izin[$i];
-//            $data['sakit'] = $sakit[$i];
-//            $this->Absensi->masukAbsen($data);
-//            $i++;
-//        }
-//    }
-//        $this->load->helper('url');
-//        redirect('DataAbsensi/tampilCoba');
     public function InsertAbsen() {
+        $year = $this->input->post('year');
+        $mounth = $this->input->post('mounth');
+        $date = $this->input->post('date');
+        $tanggal = "" . $year . "-" . $mounth . "-" . $date . "";
+        
         $id_kelas = $this->input->post('id_kelas');
         $id_mapel = $this->input->post('id_mapel');
         $no_induk = $this->input->post('no_induk[]');
-        $tgl = "2016/04/29";
+        $tanggal  = $tanggal;
+        $angkatan = $this->input->post('angkatan[]');
         $status = $this->input->post('status[]');
 
         $i = 0;
@@ -80,12 +52,14 @@ class DataAbsensi extends CI_Controller {
                 'id_kelas' => $id_kelas,
                 'id_mapel' => $id_mapel,
                 'no_induk' => $row,
-                'tgl' => $tgl,
+                'tgl' => $tanggal,
+                'angkatan' => $angkatan,
                 'status' => $status[$i]
             );
             $i++;
             $this->Absensi->masukAbsen($data);
         }
+        $this->load->view('CariMapel');
     }
 
     public function tampilInsert() {
@@ -106,27 +80,52 @@ class DataAbsensi extends CI_Controller {
         $this->load->view('TampilMapel', $data);
     }
 
-    public function tampilAbsen() {
-        $id = array('id_kelas' => $this->input->post('id_kelas'));
-        $this->load->model('Absensi');
-
-
-        $query = $this->Absensi->getSiswa($id);
-//        $tr= mysql_query($query);
-        foreach ($query->result() as $temp) {
-
-            $data['no'] = $temp->no_induk;
-            $data['nama'] = $temp->nama_siswa;
-            $this->load->view('tampilDataSiswa', $data, $this->Absensi->getSiswa($id));
-        }
-    }
+//    public function tampilAbsen() {
+//        $id = array('id_kelas' => $this->input->post('id_kelas'));
+//        $this->load->model('Absensi');
+//
+//
+//        $query = $this->Absensi->getSiswa($id);
+////        $tr= mysql_query($query);
+//        foreach ($query->result() as $temp) {
+//
+//            $data['no'] = $temp->no_induk;
+//            $data['nama'] = $temp->nama_siswa;
+//            $this->load->view('tampilDataSiswa', $data, $this->Absensi->getSiswa($id));
+//        }
+//    }
 
     public function tampilCoba() {
+        
+        $id = array('id_kelas' => $this->input->post('id_kelas'));
         $this->load->model('Absensi');
-        $id_kelas = $this->input->post('id_kelas');        
-       
-        $data['ukelas'] = $this->Absensi->cari_dataSiswa($id_kelas);
-        $this->load->view('TampilDataSiswa', $data);
+        
+        $id1 = $this->input->post('id_kelas');
+        $sql = $this->Absensi->ambil($id1);
+        foreach ($sql->result() as $temp) {
+            $data['id'] = $temp->id_kelas;
+            $data['nama']= $temp->nama_kelas;
+        }
+        $id2 = $this->input->post('id_mapel');
+        $sql1 = $this->Absensi->ambilMatpel($id2);
+        foreach ($sql1->result() as $tp){
+            $data['idMapel'] = $tp->id_mapel;
+            $data['namaMapel']= $tp->nama_mapel;
+        }
+//        $data['dmapel'] = $this->Absensi->getMapel();
+//        $id_kelas = $this->input->post('id_kelas');
+            $query = $this->Absensi->getSiswa($id);
+            $data['ukelas'] = $query->result();
+//         $data['ukelas'] = $this->Absensi->getSiswa($id_kelas);
+//  
+//            $data['no'] = $temp->no_induk;
+//            $data['nama'] = $temp->nama_siswa;
+//           $this->load->view('TampilDataSiswa', $data,$this->Absensi->getSiswa($id));
+            $this->load->view('TampilDataSiswa', $data);
+        }
+        
+        public function Tampiltanggal(){
+            
+        }
     }
-
-}
+    
