@@ -48,9 +48,9 @@ and open the template in the editor.
                     </li>
                     <li><?php echo anchor('DataKelas/index/', 'Kelola Data Kelas'); ?>
                         <ul>
-                            <li><?php echo anchor('DataKelas/tampilmasuk_kelas/', 'Masukkan Data Guru'); ?></li>
-                            <li><?php echo anchor('DataKelas/tampilhapus_kelas/', 'Menghapus Data Guru'); ?></li>
-                            <li class="last"><?php echo anchor('DataKelas/tampiledit_kelas/', 'Mengedit Data Guru'); ?></li>
+                            <li><?php echo anchor('DataKelas/tampilmasuk_kelas/', 'Masukkan Data Kelas'); ?></li>
+                            <li><?php echo anchor('DataKelas/tampilhapus_kelas/', 'Menghapus Data Kelas'); ?></li>
+                            <li class="last"><?php echo anchor('DataKelas/tampiledit_kelas/', 'Mengedit Data Kelas'); ?></li>
                         </ul>
                     </li>
                     <li><?php echo anchor('DataSiswa/index/', 'Kelola Data Siswa'); ?>
@@ -81,18 +81,20 @@ and open the template in the editor.
         <div class="wrapper col3">
             <h2>TAMBAH DATA GURU</h2>
             <form method="post" action="<?= base_url() ?>index.php/DataGuru/insertDataGuru">
+                <?php echo validation_errors(); ?>
+                <?php echo form_open('form'); ?>
                 <table> 
                     <tr>
                         <td><label>NIP&nbsp;&nbsp;</label></td>
-                        <td><input name="nipe" type="text" class="textbox"></td>
+                        <td><input name="nipe" type="text" class="textbox" required=""></td>
                     </tr>
                     <tr>
                         <td><label>Nama Guru&nbsp;&nbsp;</label></td>
-                        <td><input name="nmguru" type="text" class="textbox"></td>
+                        <td><input name="nmguru" type="text" class="textbox" required=""></td>
                     </tr>
                     <tr>
                         <td><label>Password Guru&nbsp;&nbsp;</label></td>
-                        <td><input name="passguru" type="text" class="textbox"></td>
+                        <td><input name="passguru" type="text" class="textbox" required=""></td>
                     </tr>
                 </table>
                 <input type="submit" value="Simpan">
@@ -101,9 +103,9 @@ and open the template in the editor.
             <table width="80%" border="1" cellpading="2">
                 <thead>
                     <tr>
-                        <td><b>NIP</b></td>
-                        <td><b>Nama Guru</b></td>
-                        <td><b>Password</b></td>
+                        <td align="center"><b>NIP</b></td>
+                        <td align="center"><b>Nama Guru</b></td>
+                        <td align="center"><b>Password</b></td>
                     </tr>
                 </thead>
 
@@ -113,7 +115,7 @@ and open the template in the editor.
                         ?>
                         <tr>
                             <td><?php echo $guru->nip; ?></td>
-                            <td><?php echo $guru->namaguru; ?></td>
+                            <td><?php echo $guru->nama_guru; ?></td>
                             <td><?php echo $guru->password; ?></td>
                         </tr>
                         <?php

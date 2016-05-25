@@ -91,7 +91,7 @@ and open the template in the editor.
                             </tr>
                             <tr>
                                 <td><label>Nama Guru&nbsp;&nbsp;</label></td>
-                                <td><input value="<?php echo $namaguru; ?>" name="nmguru" type="text" class="textbox" required=""></td>
+                                <td><input value="<?php echo $nama_guru; ?>" name="nmguru" type="text" class="textbox" required=""></td>
                             </tr>
                             <tr>
                                 <td><label>Password Guru&nbsp;&nbsp;</label></td>

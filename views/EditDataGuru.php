@@ -97,7 +97,7 @@ and open the template in the editor.
                             ?>
                             <tr>
                                 <td><?php echo $guru->nip; ?></td>
-                                <td><?php echo $guru->namaguru; ?></td>
+                                <td><?php echo $guru->nama_guru; ?></td>
                                 <td><?php echo $guru->password; ?></td>
                                 <td><?php echo anchor('DataGuru/tampilFormEdit/' . $guru->nip, 'Edit'); ?></td>
                             </tr>
