@@ -15,7 +15,7 @@ class Rekap extends CI_Model {
 
     public function tampilRekapAbsen($kelas, $tahun) {
         $this->db->select("a.no_induk,a.id_kelas,s.nama_siswa,k.nama_kelas,SUM(case when`status`='sakit' then 1 else 0 end)S,SUM(case when`status`='alfa' then 1 else 0 end)A,SUM(case when`status`='izin' then 1 else 0 end)I,SUM(case when`status`='hadir' then 1 else 0 end)H");
-        $this->db->from('absen a');
+        $this->db->from('data_absensi a');
         $this->db->join('siswa s', 's.no_induk=a.no_induk', 'inner');
         $this->db->join('kelas k', 'k.id_kelas=a.id_kelas', 'inner');
         //  $this->db->join('mapel m', 'm.id_mapel=a.id_mapel', 'inner');
