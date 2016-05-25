@@ -33,12 +33,12 @@ class DataKemajuanKelas extends CI_Controller {
         $date = $this->input->post('date');
         $tanggal = "" . $year . "-" . $mounth . "-" . $date . "";
         $data = array(
-            'id_kemajuan' => $this->input->post('id_kemajuan'),
+//            'id_kemajuan' => $this->input->post('id_kemajuan'),
             'id_kelas' => $this->input->post('id_kelas'),
             'id_mapel' => $this->input->post('id_mapel'),
             'nip' => $this->input->post('nip'),
-            'id_jadwal' => $this->input->post('id_jadwal'),
-            'tgl' => $tanggal,
+            'kode_jadwal' => $this->input->post('kode_jadwal'),
+            'tgl' => $this->input->post('tgl'),
             'jumlah_kehadiran' => $this->input->post('jumlah_kehadiran'),
             'materiYD' => $this->input->post('materiYD'),
             'kegiatanBM' => $this->input->post('kegiatanBM')
@@ -46,6 +46,7 @@ class DataKemajuanKelas extends CI_Controller {
 
         $this->KemajuanKelas->masukKemajuanKelas($data);
         $this->load->helper('url');
+        $this->load->view('tersimpanView2', $data);
 //        redirect('DataGuru/tampilKelasK');
     }
 
@@ -97,7 +98,7 @@ class DataKemajuanKelas extends CI_Controller {
         $sql1 = $this->KemajuanKelas->ambilNIPJadwal($id_kelas1, $id_mapel1);
         foreach ($sql1->result() as $tp) {
             $data['nip'] = $tp->nip;
-            $data['id_jadwal'] = $tp->id_jadwal;
+            $data['kode_jadwal'] = $tp->kode_jadwal;
         }
 
         $this->load->view('TampilDataKemajuan', $data);
