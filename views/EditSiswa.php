@@ -85,11 +85,11 @@ and open the template in the editor.
                 <table> 
                     <tr>
                         <td><label>Nomor Induk&nbsp;&nbsp;</label></td>
-                        <td><input value="<?php echo $nomorinduk; ?>" name="no" type="text" class="textbox" readonly></td>
+                        <td><input value="<?php echo $no_induk; ?>" name="no" type="text" class="textbox" readonly></td>
                     </tr>
                     <tr>
                         <td><label>Nama Siswa&nbsp;&nbsp;</label></td>
-                        <td><input value="<?php echo $namasiswa; ?>" name="nama" type="text" class="textbox" required=""></td>
+                        <td><input value="<?php echo $nama_siswa; ?>" name="nama" type="text" class="textbox" required=""></td>
                     </tr>
                     <tr>
                         <td><label>Angkatan/tahun&nbsp;&nbsp;</label></td>

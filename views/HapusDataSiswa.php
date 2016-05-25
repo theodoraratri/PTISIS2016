@@ -98,11 +98,11 @@ and open the template in the editor.
                         foreach ($dsiswa as $siswa) {
                             ?>
                             <tr>
-                                <td><?php echo $siswa->nomorinduk; ?></td>
-                                <td><?php echo $siswa->namasiswa; ?></td>
+                                <td><?php echo $siswa->no_induk; ?></td>
+                                <td><?php echo $siswa->nama_siswa; ?></td>
                                 <td><?php echo $siswa->angkatan; ?></td>
                                 <td><?php echo $siswa->id_kelas; ?></td>
-                                <td><?php echo anchor('DataSiswa/deleteDataSiswa/' . $siswa->nomorinduk, 'Hapus'); ?></td>
+                                <td><?php echo anchor('DataSiswa/deleteDataSiswa/' . $siswa->no_induk, 'Hapus'); ?></td>
                             </tr>
                             <?php
                         }
