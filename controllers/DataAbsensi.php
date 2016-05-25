@@ -30,7 +30,7 @@ class DataAbsensi extends CI_Controller {
 
 //
     public function index() {
-        $this->load->view("TampilDataKemajuan");
+        $this->load->view("TampilDataAbsensi");
     }
 
     public function InsertAbsen() {
@@ -43,7 +43,7 @@ class DataAbsensi extends CI_Controller {
         $id_mapel = $this->input->post('id_mapel');
         $no_induk = $this->input->post('no_induk[]');
         $tanggal  = $tanggal;
-        $angkatan = $this->input->post('angkatan[]');
+        $tahun_ajaran = $this->input->post('tahun_ajaran[]');
         $status = $this->input->post('status[]');
 
         $i = 0;
@@ -53,13 +53,14 @@ class DataAbsensi extends CI_Controller {
                 'id_mapel' => $id_mapel,
                 'no_induk' => $row,
                 'tgl' => $tanggal,
-                'angkatan' => $angkatan,
+                'tahun_ajaran' => $tahun_ajaran,
                 'status' => $status[$i]
             );
             $i++;
             $this->Absensi->masukAbsen($data);
         }
-        $this->load->view('CariMapel');
+//        $this->load->view('CariMapel');
+        $this->load->view('tersimpanView', $data);
     }
 
     public function tampilInsert() {
@@ -95,18 +96,18 @@ class DataAbsensi extends CI_Controller {
 //        }
 //    }
 
-    public function tampilCoba() {
+    public function tampilCoba($a,$b) {
         
-        $id = array('id_kelas' => $this->input->post('id_kelas'));
+        $id =  $a;
         $this->load->model('Absensi');
         
-        $id1 = $this->input->post('id_kelas');
+        $id1 = $a;
         $sql = $this->Absensi->ambil($id1);
         foreach ($sql->result() as $temp) {
             $data['id'] = $temp->id_kelas;
             $data['nama']= $temp->nama_kelas;
         }
-        $id2 = $this->input->post('id_mapel');
+        $id2 = $b;
         $sql1 = $this->Absensi->ambilMatpel($id2);
         foreach ($sql1->result() as $tp){
             $data['idMapel'] = $tp->id_mapel;
@@ -124,8 +125,6 @@ class DataAbsensi extends CI_Controller {
             $this->load->view('TampilDataSiswa', $data);
         }
         
-        public function Tampiltanggal(){
-            
-        }
+        
     }
     
