@@ -27,14 +27,6 @@ class FilterLoginGuru extends CI_Controller {
     public function indexGuru() {
         $this->load->view('HalamanGuru');
     }
-
-    public function successpage() {
-        $this->load->model('UserModel');
-        $query = $this->UserModel->processLogin();
-        $data['login'] = $query->result();
-        $this->load->view('successpage', $data);
-    }
-
     function logout() {
         $this->session->sess_destroy();
         //redirect(base_url());
@@ -58,7 +50,7 @@ class FilterLoginGuru extends CI_Controller {
                     'PASSWORD' => $query[0]->PASSWORD,
                 );
                 $this->session->set_userdata($user);
-                $this->load->view('successpage');
+                $this->load->view('HalamanGuru');
                 //redirect('successpage');
             }
         } else {

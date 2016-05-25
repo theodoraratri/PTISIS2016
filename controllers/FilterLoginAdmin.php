@@ -27,12 +27,6 @@ class FilterLoginAdmin extends CI_Controller {
     public function indexAdmin() {
         $this->load->view('HalamanAdmin');
     }
-    public function successpage() {
-        $this->load->model('UserModel');
-        $query = $this->UserModel->processLogin();
-        $data['login'] = $query->result();
-        $this->load->view('HalamanAdmin', $data);
-    }
 
     function logout() {
         $this->session->sess_destroy();
