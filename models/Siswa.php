@@ -22,12 +22,12 @@ class Siswa extends CI_Model {
     }
 
     public function updatedatasiswa($data) {//function untuk mengedit data siswa
-        $this->db->where('nomorinduk', $data['nomorinduk']);
+        $this->db->where('no_induk', $data['no_induk']);
         $this->db->update('SISWA', $data);
     }
 
-    function deletedatasiswa($nomorinduk) {//function untuk menghapus data siswa
-         $this->db->delete('SISWA', $nomorinduk);
+    function deletedatasiswa($no_induk) {//function untuk menghapus data siswa
+         $this->db->delete('SISWA', $no_induk);
     }
 
    public function tampildKelas() {
@@ -40,10 +40,9 @@ class Siswa extends CI_Model {
         $this->db->from("SISWA");
         return $this->db->get();
     }
-    function getSiswa($nomorinduk) {
-        $this->db->where('nomorinduk', $nomorinduk);
+    function getSiswa($no_induk) {
+        $this->db->where('no_induk', $no_induk);
         return $this->db->get('SISWA');
         //select siswa berdasarkan id yang dimiliki
     }
-
 }
