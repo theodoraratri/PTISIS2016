@@ -49,7 +49,7 @@ class DataGuru extends CI_Controller {
     public function insertDataGuru() {
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('nipe', 'NIP', 'required|max_length[30]|integer');
+        $this->form_validation->set_rules('nipe', 'NIP', 'required|max_length[30]');
         $this->form_validation->set_rules('nmguru', 'Nama Guru', 'required|max_length[50]');
         $this->form_validation->set_rules('passguru', 'Password Guru', 'required|max_length[20]');
         if ($this->form_validation->run() == FALSE) {
@@ -60,7 +60,7 @@ class DataGuru extends CI_Controller {
         } else {
             $data = array(
                 'nip' => $this->input->post('nipe'),
-                'namaguru' => $this->input->post('nmguru'),
+                'nama_guru' => $this->input->post('nmguru'),
                 'password' => $this->input->post('passguru')
             );
             $this->Guru->insertdataguru($data);
@@ -72,7 +72,7 @@ class DataGuru extends CI_Controller {
     public function updateDataGuru() {
         $nipe = array(
             'nip' => $this->input->post('nipe'),
-            'namaguru' => $this->input->post('nmguru'),
+            'nama_guru' => $this->input->post('nmguru'),
             'password' => $this->input->post('passguru')
         );
         $this->Guru->updatedataguru($nipe); //passing variable $id ke guru_model
@@ -92,7 +92,7 @@ class DataGuru extends CI_Controller {
         $query = $this->Guru->getGuru($nip);
         foreach ($query->result() as $guru) {
             $data['nip'] = $guru->nip;
-            $data['namaguru'] = $guru->namaguru;
+            $data['nama_guru'] = $guru->nama_guru;
             $data['password'] = $guru->password;
         }
         $this->load->view('EditGuru', $data);
