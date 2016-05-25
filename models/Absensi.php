@@ -15,7 +15,6 @@ class Absensi extends CI_Model {
 
     function __construct() {
         parent::__construct();
-        
     }
 
     public function masukAbsen($data) {
@@ -29,7 +28,7 @@ class Absensi extends CI_Model {
 
     public function cari_mapel($id_kelas, $hari) {
         $this->db->select('i.id_kelas,k.nama_kelas,i.id_mapel,n.nama_mapel');
-        $this->db->from('jadwal_pelajaran i');
+        $this->db->from('jadwalpelajaran i');
         $this->db->join('mapel n', 'i.id_mapel = n.id_mapel', 'inner');
         $this->db->join('kelas k', ' k.id_kelas = i.id_kelas', 'inner');
         $this->db->where('i.id_kelas', $id_kelas);
@@ -70,8 +69,8 @@ class Absensi extends CI_Model {
 //        }
 //       
 //    }
-    function getSiswa() {
-        $tamung = $_POST['id_kelas'];
+    function getSiswa($id) {
+        $tamung = $id;
         $query = $this->db->query("select no_induk, nama_siswa from siswa where id_kelas='$tamung'");
         return $query;
     }
@@ -94,12 +93,15 @@ class Absensi extends CI_Model {
         $query = $this->db->get()->result();
         return $query;
     }
-    function ambil($kelas){
-         $this->db->where('id_kelas', $kelas);
+
+    function ambil($kelas) {
+        $this->db->where('id_kelas', $kelas);
         return $this->db->get('kelas');
     }
-    function ambilMatpel($id){
-        $this->db->where('id_mapel',$id);
+
+    function ambilMatpel($id) {
+        $this->db->where('id_mapel', $id);
         return $this->db->get('mapel');
     }
+
 }

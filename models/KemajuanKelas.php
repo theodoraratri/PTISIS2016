@@ -36,11 +36,11 @@ class KemajuanKelas extends CI_Model{
 //        return $this->db->query($query);
     }
     public function masukKemajuanKelas($data) {
-        $this->db->insert('data-kemajuan', $data);
+        $this->db->insert('kemajuan_kelas', $data);
     }
 
     public function tampilKemajuanKelas($tgl) {//menampilkan seluruh data kemajuan kelas yang baru saja disimpan
-        $sql = "select * from data-kemajuan where tgl = '".$tgl."'";
+        $sql = "select * from kemajuan_kelas where tgl = '".$tgl."'";
         $this->db->query($sql);
     }
      public function getMapelK() {
@@ -57,12 +57,12 @@ class KemajuanKelas extends CI_Model{
         return $query;
     }
     public function getIdJadwal(){
-        $query = $this->db->query("select id_jadwal from jadwal_pelajaran");
+        $query = $this->db->query("select kode_jadwal from jadwalpelajaran");
         return $query;
     }
     function ambilNIPJadwal($id_kelas1,$id_mapel1){
         $this->db->where('id_kelas',$id_kelas1);
         $this->db->where('id_mapel',$id_mapel1 );       
-        return $this->db->get('jadwal_pelajaran');
+        return $this->db->get('jadwalpelajaran');
     }
 }
