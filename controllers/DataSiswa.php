@@ -60,8 +60,8 @@ class DataSiswa extends CI_Controller {
             $this->load->view('MasukDataSiswa', $data);
         } else {
             $data = array(
-                'nomorinduk' => $this->input->post('no'),
-                'namasiswa' => $this->input->post('nama'),
+                'no_induk' => $this->input->post('no'),
+                'nama_siswa' => $this->input->post('nama'),
                 'angkatan' => $this->input->post('angk'),
                 'id_kelas' => $this->input->post('idkel')
             );
@@ -73,8 +73,8 @@ class DataSiswa extends CI_Controller {
 
     public function updateDataSiswa() {
         $nin = array(
-            'nomorinduk' => $this->input->post('no'),
-            'namasiswa' => $this->input->post('nama'),
+            'no_induk' => $this->input->post('no'),
+            'nama_siswa' => $this->input->post('nama'),
             'angkatan' => $this->input->post('angk'),
             'id_kelas' => $this->input->post('idkel')
         );
@@ -83,19 +83,19 @@ class DataSiswa extends CI_Controller {
         //Function yang dipanggil ketika ingin melakukan update terhadap produk yang ada di dalam database
     }
 
-    public function deleteDataSiswa($nomorinduk) {
-        $where = array('nomorinduk' => $nomorinduk);
-        $this->Siswa->deletedatasiswa($where, $nomorinduk); //passing variable $id ke siswa_model
+    public function deleteDataSiswa($no_induk) {
+        $where = array('no_induk' => $no_induk);
+        $this->Siswa->deletedatasiswa($where, $no_induk); //passing variable $id ke siswa_model
         $this->load->helper('url');
         redirect('DataSiswa/tampilhapus_siswa');
         //Function yang dipanggil ketika ingin melakukan delete produk dari database
     }
 
-    public function tampilFormEdit($nomorinduk) {
-        $query = $this->Siswa->getSiswa($nomorinduk);
+    public function tampilFormEdit($no_induk) {
+        $query = $this->Siswa->getSiswa($no_induk);
         foreach ($query->result() as $siswa) {
-            $data['nomorinduk'] = $siswa->nomorinduk;
-            $data['namasiswa'] = $siswa->namasiswa;
+            $data['no_induk'] = $siswa->no_induk;
+            $data['nama_siswa'] = $siswa->nama_siswa;
             $data['angkatan'] = $siswa->angkatan;
             $data['id_kelas'] = $siswa->id_kelas;
         }
