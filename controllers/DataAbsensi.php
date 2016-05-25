@@ -30,7 +30,7 @@ class DataAbsensi extends CI_Controller {
 
 //
     public function index() {
-        $this->load->view("TampilDataAbsensi");
+        $this->load->view("TampilDataKemajuan");
     }
 
     public function InsertAbsen() {
@@ -38,11 +38,11 @@ class DataAbsensi extends CI_Controller {
         $mounth = $this->input->post('mounth');
         $date = $this->input->post('date');
         $tanggal = "" . $year . "-" . $mounth . "-" . $date . "";
-        
+
         $id_kelas = $this->input->post('id_kelas');
         $id_mapel = $this->input->post('id_mapel');
         $no_induk = $this->input->post('no_induk[]');
-        $tanggal  = $tanggal;
+        $tanggal = $tanggal;
         $tahun_ajaran = $this->input->post('tahun_ajaran[]');
         $status = $this->input->post('status[]');
 
@@ -96,35 +96,36 @@ class DataAbsensi extends CI_Controller {
 //        }
 //    }
 
-    public function tampilCoba($a,$b) {
-        
-        $id =  $a;
+    public function tampilCoba($a, $b) {
+        $id = $a;
         $this->load->model('Absensi');
-        
+
         $id1 = $a;
         $sql = $this->Absensi->ambil($id1);
         foreach ($sql->result() as $temp) {
             $data['id'] = $temp->id_kelas;
-            $data['nama']= $temp->nama_kelas;
+            $data['nama'] = $temp->nama_kelas;
         }
         $id2 = $b;
         $sql1 = $this->Absensi->ambilMatpel($id2);
-        foreach ($sql1->result() as $tp){
+        foreach ($sql1->result() as $tp) {
             $data['idMapel'] = $tp->id_mapel;
-            $data['namaMapel']= $tp->nama_mapel;
+            $data['namaMapel'] = $tp->nama_mapel;
         }
 //        $data['dmapel'] = $this->Absensi->getMapel();
 //        $id_kelas = $this->input->post('id_kelas');
-            $query = $this->Absensi->getSiswa($id);
-            $data['ukelas'] = $query->result();
+        $query = $this->Absensi->getSiswa($id);
+        $data['ukelas'] = $query->result();
 //         $data['ukelas'] = $this->Absensi->getSiswa($id_kelas);
 //  
 //            $data['no'] = $temp->no_induk;
 //            $data['nama'] = $temp->nama_siswa;
 //           $this->load->view('TampilDataSiswa', $data,$this->Absensi->getSiswa($id));
-            $this->load->view('TampilDataSiswa', $data);
-        }
-        
+        $this->load->view('TampilDataSiswa', $data);
+    }
+
+    public function Tampiltanggal() {
         
     }
-    
+
+}
