@@ -25,25 +25,19 @@ class Guru extends CI_Model {
     }
 
     function getGuru($nip) {
-
         $this->db->where('nip', $nip);
         return $this->db->get('GURU');
-
-
-
         //select guru berdasarkan id yang dimiliki
     }
 
     function insertdataguru($data) {
         //untuk insert data ke database
-
         $this->db->insert('GURU', $data);
     }
 
     function updatedataguru($data) {
         $this->db->where('nip', $data['nip']);
         $this->db->update('GURU', $data);
-
         //update guru berdasarkan id
     }
 
