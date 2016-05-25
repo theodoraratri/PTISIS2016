@@ -88,7 +88,7 @@ and open the template in the editor.
                         <td><label>Kode Jadwal &nbsp;&nbsp;</label></td>
                         <td><input name="kode" type="text" class="textbox" required=""></td>
                     </tr>
-                    <tr><td>NIP</td>
+                    <tr><td>Nama Guru</td>
                         <td><select name="nip">
 
                                 <?php
@@ -192,6 +192,7 @@ and open the template in the editor.
                 ?> 
             </table>
         </div>
+
         <!-- ####################################################################################################### -->
         <div class="wrapper col5">
             <div id="footer">

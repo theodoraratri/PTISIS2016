@@ -4,59 +4,61 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-  <meta charset="UTF-8">
-        <title>Sistem Informasi Siswa</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-        <link rel="stylesheet" href="<?php echo base_url(); ?>layout/styles/layout.css" type="text/css" />
-        <script type="text/javascript" src="<?php site_url('layout/scripts/jquery.min.js') ?>"></script>
-        <script type="text/javascript" src="<?php site_url('layout/scripts/jquery.slidepanel.setup.js') ?>"></script>
-        <script type="text/javascript" src="<?php site_url('layout/scripts/jquery.ui.min.js') ?>"></script>
-        <script type="text/javascript" src="<?php site_url('layout/scripts/jquery.tabs.setup.js') ?>"></script>
-    </head>
-    <body>
-        <!-- ####################################################################################################### -->
-        <div class="wrapper col1">
-            <div id="header">
-                <div id="logo">
-                    <h1><?php echo anchor('FilterLoginGuru/indexGuru/', 'Sistem Informasi Siswa'); ?></h1>
-                    <p>SMA Pangudi Luhur Yogyakarta</p>
-                </div>
-                <div class="fl_right">
-                    <form method="post" action="<?= base_url() ?>index.php/FilterLoginGuru/logout">
-                        <p>Tel: xxxxx xxxxxxxxxx | Mail: info@domain.com</p>
-                        <p><b>I'm <?= $this->session->userdata('NIP') ?></b>|<input type="submit" value="Logout"></form> </p>
-                </div>
-                <br class="clear" />
+<meta charset="UTF-8">
+<title>Sistem Informasi Siswa</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" href="<?php echo base_url(); ?>layout/styles/layout.css" type="text/css" />
+<script type="text/javascript" src="<?php site_url('layout/scripts/jquery.min.js') ?>"></script>
+<script type="text/javascript" src="<?php site_url('layout/scripts/jquery.slidepanel.setup.js') ?>"></script>
+<script type="text/javascript" src="<?php site_url('layout/scripts/jquery.ui.min.js') ?>"></script>
+<script type="text/javascript" src="<?php site_url('layout/scripts/jquery.tabs.setup.js') ?>"></script>
+</head>
+<body>
+    <!-- ####################################################################################################### -->
+    <div class="wrapper col1">
+        <div id="header">
+            <div id="logo">
+                <h1><?php echo anchor('FilterLoginGuru/indexGuru/', 'Sistem Informasi Siswa'); ?></h1>
+                <p>SMA Pangudi Luhur Yogyakarta</p>
             </div>
-        </div>
-        <!-- ####################################################################################################### -->
-        <div class="wrapper col2">
-            <div id="topnav">
-                <ul>
-                    <li><?php echo anchor('FilterLoginGuru/indexGuru/', 'Halaman Guru'); ?>
-                        <ul>
-                        </ul>
-                    </li>
-                    <li><?php echo anchor('-/-/', 'Memasukkan Absensi dan Kemajuan Kelas'); ?>
-                        <ul>
-                        </ul>
-                    </li>
-                    <li><?php echo anchor('RekapController/tampilIdKelas/', 'Mencetak Absensi'); ?>
-                        <ul>
-                        </ul>
-                    </li>
-                    <li class="active"><?php echo anchor('RekapController/tampilIdKelasKemajuan', 'Mencetak Kemajuan Kelas'); ?>
-                        <ul>
-                        </ul>
-                    </li>
-                </ul>
+            <div class="fl_right">
+                <form method="post" action="<?= base_url() ?>index.php/FilterLoginGuru/logout">
+                    <p>Tel: xxxxx xxxxxxxxxx | Mail: info@domain.com</p>
+                    <p><b>I'm <?= $this->session->userdata('NIP') ?></b>|<input type="submit" value="Logout"></form> </p>
             </div>
+            <br class="clear" />
         </div>
-        
-        <!-- ####################################################################################################### -->
-      
- 
-        <h1>REKAP KEMAJUAN KELAS</h1>
+    </div>
+    <!-- ####################################################################################################### -->
+    <div class="wrapper col2">
+        <div id="topnav">
+            <ul>
+                <li><?php echo anchor('FilterLoginGuru/indexGuru/', 'Halaman Guru'); ?>
+                    <ul>
+                    </ul>
+                </li>
+                <li><?php echo anchor('DataAbsensi/tampilInsert/', 'Memasukkan Absensi'); ?>
+                    <ul>
+                    </ul>
+                </li>
+                <li><?php echo anchor('DataKemajuanKelas/tampilInsert/', 'Memasukkan Kemajuan Kelas'); ?>
+                    <ul>
+                    </ul>
+                </li>
+                <li><?php echo anchor('RekapController/tampilIdKelas/', 'Mencetak Absensi'); ?>
+                    <ul>
+                    </ul>
+                </li>
+                <li   class="active"><?php echo anchor('RekapController/tampilIdKelasKemajuan', 'Mencetak Kemajuan Kelas'); ?>
+                    <ul>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- ####################################################################################################### -->
+    <div class="wrapper col3">
+        <h3>REKAP KEMAJUAN KELAS</h3>
         <form method="post" action="<?= base_url(); ?>index.php/RekapController/cetakKemajuanKelas">
             <table>
                 <tr><td>Nama Kelas</td>
@@ -111,7 +113,7 @@ and open the template in the editor.
             <input type="submit" value="Lihat Detail">
         </form>
         <form method="post" action="<?= base_url(); ?>index.php/RekapController/cetakExcelKemajuanKelas">
-            <h1 align="center"> SMA PANGUDI LUHUR</h1>
+            <h1 align="center"> SMA PANGUDI LUHUR YOGYAKARTA</h1>
             <h2 align="center"> NAMA KELAS   :
                 <?php
                 if (isset($nkelas_cetakkemajuankelas)) {
@@ -122,37 +124,26 @@ and open the template in the editor.
                 ?>   
 
             </h2>
-            <h3 align="center"> WALI KELAS   :
-                
+            <h3 >
                 <?php
-                if (isset($walikelaskemajuan)) {
+                if (isset($idKelasCetakK)) {
                     ?>
-                    <?php echo $walikelaskemajuan; ?>
+                    <input type="hidden" value="<?php echo $idKelasCetakK; ?>" name="idkelascetak" type="text" class="textbox" readonly="">
                     <?php
                 }
-                ?>     
-                
+                ?>   
+
             </h3>
             <h4>
-            <?php
-            if (isset($idKelasCetakK)) {
-                ?>
-                <input type="hidden" value="<?php echo $idKelasCetakK; ?>" name="idkelascetak" type="text" class="textbox" readonly="">
-                        <?php
-                    }
-                    ?>   
-
-            </h4>
-            <h5>
-            <?php
-            if (isset($blntahun)) {
-                ?>
+                <?php
+                if (isset($blntahun)) {
+                    ?>
                     <input type="hidden" value="<?php echo $blntahun; ?>" name="bulanThn" type="text" class="textbox" readonly="">
                     <?php
                 }
                 ?>   
 
-            </h5>
+            </h4>
 
             <table width="80%" border="1" cellpading="2">
                 <thead>
@@ -188,24 +179,25 @@ and open the template in the editor.
             </table>
             <input type="submit" value="Cetak ke Excel">
         </form>
-          <div class="wrapper col5">
-            <div id="footer">
-                <div id="newsletter">
-                    <h2>PENCARIAN GOOGLE</h2>
-                    <p>Untuk melakukan pencarian <a href="http://www.google.com/">click here &raquo;</a></p>
-                </div>
-                <br class="clear" />
-            </div>
+    </div>
+<!-- ####################################################################################################### -->
+<div class="wrapper col5">
+    <div id="footer">
+        <div id="newsletter">
+            <h2>PENCARIAN GOOGLE</h2>
+            <p>Untuk melakukan pencarian <a href="http://www.google.com/">click here &raquo;</a></p>
         </div>
-        <!-- ####################################################################################################### -->
-        <div class="wrapper col6">
-            <div id="copyright">
-                <p class="fl_left">Copyright &copy; 2016 - All Rights Reserved - <a href="#">Domain Name</a></p>
-                <br class="clear" />
-            </div>
-        </div>
-        <?php
-        ?>
-    
-    </body>
+        <br class="clear" />
+    </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper col6">
+    <div id="copyright">
+        <p class="fl_left">Copyright &copy; 2016 - All Rights Reserved - <a href="#">Domain Name</a></p>
+        <br class="clear" />
+    </div>
+</div>
+<?php
+?>
+</body>
 </html>

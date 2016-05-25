@@ -86,14 +86,14 @@ and open the template in the editor.
                     <tr>
                         <td align="center"><b>Kode Jadwal</b></td>
                         <td align="center"><b>NIP</b></td>
-                         <td align="center"><b>Nama guru</b></td>
+                        <td align="center"><b>Nama guru</b></td>
                         <td align="center"><b>ID Mapel</b></td>
-                         <td align="center"><b>Nama Mapel</b></td>
+                        <td align="center"><b>Nama Mapel</b></td>
                         <td align="center"><b>ID Kelas</b></td>
-                         <td align="center"><b>Nama kelas</b></td>
+                        <td align="center"><b>Nama kelas</b></td>
                         <td align="center"><b>Hari</b></td>
                         <td align="center"><b>Jam</b></td>
-                        
+
                         <td align="center"><b>Edit</b></td>
                     </tr>
                 </thead>
@@ -104,14 +104,14 @@ and open the template in the editor.
                         <tr>
                             <td><?php echo $row->kode_jadwal; ?></td>
                             <td><?php echo $row->nip; ?></td>
-                             <td><?php echo $row->nama_guru; ?></td>
+                            <td><?php echo $row->nama_guru; ?></td>
                             <td><?php echo $row->id_mapel; ?></td>
                             <td><?php echo $row->nama_mapel; ?></td>
                             <td><?php echo $row->id_kelas; ?></td>
                             <td><?php echo $row->nama_kelas; ?></td>
                             <td><?php echo $row->hari; ?></td>
                             <td><?php echo $row->jam; ?></td>
-                          
+
                             <td><?php echo anchor('DataJadwalPelajaran/tampilFormEdit/' . $row->kode_jadwal, 'Edit'); ?></td>        
                         </tr>
                         <?php

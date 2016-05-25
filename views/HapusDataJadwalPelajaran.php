@@ -80,6 +80,7 @@ and open the template in the editor.
         <!-- ####################################################################################################### -->
         <div class="wrapper col3">
             <h3>HAPUS DATA JADWAL PELAJARAN</h3>
+            
             <h1 align="center">Tabel Data Jadwal Pelajaran</h1>
             <table width="80%" border="1" cellpading="2">
                 <thead>

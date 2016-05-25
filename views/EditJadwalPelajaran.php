@@ -79,7 +79,7 @@ and open the template in the editor.
         </div>
         <!-- ####################################################################################################### -->
         <div class="wrapper col3">
-            <h2>EDIT DATA JADWAL PELAJARAN</h2>
+            <h2>TAMBAH DATA JADWAL PELAJAR</h2>
             <form method="post" action="<?= base_url(); ?>index.php/DataJadwalPelajaran/updateDataJadwalPelajaran">
                 <table> 
                     <tr>
